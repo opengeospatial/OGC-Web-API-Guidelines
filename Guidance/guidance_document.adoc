@@ -1,5 +1,5 @@
 :Title: OGC Web API Guidance
-:titletext: OGC (add title text)
+:titletext: OGC (Web API Guidance)
 :doctype: book
 :encoding: utf-8
 :lang: en
@@ -91,11 +91,13 @@ include::clause_4_terms_and_definitions.adoc[]
 
 include::clause_5_conventions.adoc[]
 
-include::clause_6_informative_text.adoc[]
+include::clause_6_REST.adoc[]
 
-include::clause_7_normative_text.adoc[]
+include::clause_7_OpenAPI.adoc[]
 
-include::clause_8_media_types.adoc[]
+include::clause_8_Resources.adoc[]
+
+include::clause_9_HTTP.adoc[]
 
 <<<
 ////

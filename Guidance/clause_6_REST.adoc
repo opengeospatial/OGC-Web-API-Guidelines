@@ -1,0 +1,222 @@
+== REST
+[NOTE]
+====
+The following content was extracted from the Testbed 12 REST User Guide (OGC 16-057r1).  Some of this material is out of date.
+====
+
+=== Principles of REST
+
+The term 'REST' was coined by Roy Fielding in Ph.D. dissertation in 2000. Since that document hundreds of systems architects have tried to establish one definition of a REST Architecture - usually resulting in an unfinished argument. This is because REST is not an architecuture. It’s a set of principles that guide the development of a system that has resources, resource identifiers (e.g. URL), representations and connectors (e.g. clients, servers).
+
+One interesting item to note is that the initial version of OGC Web Services were designed before Roy Fielding published his Ph.D. dissertation in 2000. So the answer to the question of "Why didn’t OGC Web Services use Fielding’s REST?" is… "Well, it didn’t really exist."
+
+It’s also important to remember that many high-level principles of REST can seem rather Zen-like when you first read them. However, in Testbed 12 we limited things to HTTP, so things can start to fall into place.
+
+With these considerations in mind, when considering REST for delivering geospatial data and services some high-level principles of REST include:
+
+* REST does not restrict communication to a particular protocol.
+* REST is not a web services pattern.
+
+But before you think that 'Web Services' must be abandoned some other key points are …
+
+* The key abstraction of information in REST is a Resource.
+* REST uses a Resource Identifier (e.g. URL) to identify the Resource involved in an interaction.
+* REST connectors provide a generic interface for accessing and manipulating the value set of a Resource. Connectors are client and servers in Testbed 12.
+* REST uses various connector types to encapsulate the activities of accessing Resources and
+transferring Resource Representations.
+* A Representation is a sequence of bytes, plus Representation metadata to describe those bytes.
+REST doesn’t say what the format of the Representation is.
+* REST does not restrict communication to a particular protocol, but it does constrain the interface between components, and hence the scope of interaction and implementation assumptions that might otherwise be made between components. For example, the Web’s primary transfer Protocol is HTTP.
+* The Protocol for interface between Components in Testbed 12 is HTTP.
+
+With these principles in mind, when trying to decide to use (or not use) REST to offer geospatial information and services it is important to remember that REST is not a 'one size fits all' proposition. There are different levels of REST ranging from not RESTful to what may be considered 'fully RESTful'. These were discussed in the previous section as Levels 0 to 3.
+
+=== Key Terms
+
+The following key terms and examples are presented in an order designed help the reader quickly get a better understanding the basics of REST for geospatial information and services.
+
+. Representational State Transfer (REST)
+
+    REST is a simple method of discovering, accessing and updating geospatial and other information. There is no special software to install. A web browser, web application or a mobile app may be used to access the service directly - using standard HTTP methods (e.g. GET, PUT, POST, DELETE), resources and hypermedia controls.
+    
+. Hypertext Transfer Protocol (HTTP)
+
+    HTTP is the communications protocol used on the World Wide Web by clients, like a web browser, and servers. RESTful systems often (but not always) communicate over Hypertext Transfer Protocol (HTTP).
+    
+. HTTP Method
+
+    HTTP requests tell the server what the client wants and may include different 'methods' in the request such GET, PUT, POST and DELETE. The GET method retrieves information. The POST method sends information to be stored on the server. The PUT method sends a new copy of an existing information to the server. The DELETE method deletes information on a server. REST uses these HTTP methods to access and update 'resources' on the server.
+    
+. URI
+
+    The unique identifier for a resource, structured in conformance with IETF RFC 2396, etc.
+    
+. Resource
+
+    The key abstraction of information in REST is called a Resource. A Resource is simply the target of a HTTP method or hypertext reference. In an open geospatial REST architecture Resources can be maps, features, imagery, analytic processes, etc.
+    
+. Base URL
+
+    This is a URL prefix that the client appends parameters to in order to arrive at a valid request URL, including a request URL for the Capabilities Resource. Typically, the Base URL contains a protocol identifier (e.g. http://) and a domain name (e.g. www.someserver.com).
+
+. Capabilities Resource
+
+    This is a description of the resources offered by a server. The base, or root, URL of the server resolves to the service metadata document, which means if you click it in a web browser you should should a description of the services (the OGC Capabilities document).
+    
+. Hypermedia Controls
+
+    Hypermedia controls are links embedded within a resource representation. They tell a client what state transition are available and how to perform them. For the purposes of this guide, the definitions specified in the OWS Common Implementation Standard [OGC 06-121r9] also apply as needed.
+    
+==== Abbreviated Terms
+
+Frequently used abbreviated terms in this document include:
+
+* HTML Hypertext Markup Language
+* HTTP Hypertext Transfer Protocol
+* URL Uniform Resource Locator
+* API Application Programming Interface
+* COTS Commercial Off The Shelf
+* SOAP Simple Object Access Protocol
+* WSDL Web Services Definition Language
+* JSON Javascript Object Notation
+* XML Extensible Markup Language
+* POX Plain Old XML
+* RMM Richardsen Maturity Model�
+
+=== What Is REST?
+
+There are almost as many definitions of REST as people using it. As stated above, REST is a method of discovering, accessing and updating geospatial content using the standards of the World Wide Web – Resources, HTTP methods (GET, PUT, DELETE etc.) and hypermedia controls.
+
+However, there’s often confusion in the geospatial community over ‘What is RESTful?’. Lengthy email threads have discussed whether you must use hypermedia, structured URLs or whether it is ‘allowed’ to include ‘query parameters’ in a URL. Previous efforts have even gone to great length to list diverse OGC documents with ‘REST’ in the title.
+
+These discussions don’t help the central challenge – how do we make it easy to access open geospatial information, and answer key questions about the world around us?
+
+To meet this challenge, it’s important to recognize that REST isn’t a single, monolithic approach. It doesn’t even have to apply only to the Web. However, for the purposes of this guide we limit REST to the Web (i.e. HTTP) - and then break it down into four Levels. These Levels are derived from the Richardson Maturity Model (RMM).
+
+The four Levels progress from Services to a focus on geospatial Resources, HTTP Verbs and linking Resources. A simplified representation of this Services → Resources → Associations progression is presented in the graphic below. Basic guidance is also provided at each Level. It’s important to recognize that these Levels aren’t discrete and exclusive – they build upon each other to help geospatial interoperability.
+
+image::images/Figure_1.png[Figure 1]
+
+Starting at Level 0 the focus is on making requests to ‘Services’ using HTTP as a transport system for our remote interactions, often with XML. Level 0 represents the current state of many OGC Web Services.
+
+At Level 1 an enterprise can start to identify open geospatial Resources and then make requests to the Resources. An open geospatial Resource is geospatial information, like a feature or satellite imagery data, that can be identified by a URL.
+
+An example of making a request to a Feature Resource is shown below. In this example, an application needs to get the boundary of the state of California. To do this, it sends an HTTP request to the Resource at the URL indicated.
+
+image::images/Figure_2.png[figure 2]
+
+Since REST is Resource oriented and the standard OGC web architecture is service oriented some adaptation of prior OGC service model is required. However, rather than completely redefining OGC Web Services, Testbed 12 has taken an evolutionary approach in developing the REST bindings that reuse as much of OGC Web Services functions as possible – but update things to work RESTfully.
+
+At Level 2, a geospatial enterprise may begin using the HTTP ‘verbs’ the same way they are used in HTTP itself. This means we don’t define unique ‘Operations’ like INSERT, UPDATE, DELETE to access or modify Features and other open geospatial Resources. Instead, we use HTTP methods like GET, POST, PUT, DELETE.
+
+Using HTTP verbs can make many things easier for API developers and client applications. For example, if an application needs to change something in the California boundary feature it simply sends an HTTP PUT with information to update the Feature Resource.
+
+image::images/Figure_3.png[Figure 3]
+
+So, where possible, open geospatial REST uses HTTP methods for actions against Resources:
+
+* GET
+  - Retrieve a specific Resource from the server
+  - Retrieve a collection of Resources from the server
+* POST
+  - Create a new Resource on the server
+* PUT
+  - Update an existing Resource on the server
+* DELETE
+  - Remove a Resource from the server
+* OPTIONS
+  - Used to get available options for Resources (what you can do with Resources)
+    
+HTTP Status Codes such as ‘200 OK’, '400 Invalid Request', '404 Not Found' and all others are also used in accordance with the HTTP 1.1 specification.
+
+HTTP methods on resources are subject to authentication and access control (e.g. someone who does not have authorization to create new features would not see the POST methods when interrogating a resource with the OPTIONS method). Authentication and access control are envisioned to be layered on top of RESTful resources.
+
+At this point, an enterprise architect may expect that all open geospatial Resources must available on a server. But this is not the case. Conceptually, and from the client’s perspective, an open geospatial Resource is available even if serving it involves dynamic generation. For example, in the case of a REST WMTS it may be more practical to render Tile Resources on-the-fly than creating, storing and billions of small images. This is because to create and store all the possible Resources for a time-queryable REST WMTS you would have to multiply billions of tile positions by every allowed open-ended interval to fully pre-generate them. With 19+ digits of freedom on each end of an arbitrary time interval, you end up with ~10⁴⁷ possible REST Resource URLs, or quattuordecillions of them. So it may be more practical to generate some Resources ‘on the fly’.
+
+With Resources defined and HTTP verbs in use, at Level 3 we begin to focus is on hypermedia and Associations. That means we start building links between related open geospatial Resources. For example, hypermedia links may be used to link metadata to different information models or schemas. In addition, a Map Resource may have Associations to the satellite image data that it comes from.
+
+At this point it’s very important to recognize that open geospatial Resources can include very complex information about the Earth – such as electro-optical, infrared, multispectral, hyperspectral and radar satellite measurements, map tiles, sensor observations and much more. This means that as much as we want all Resources to fit neatly into Level 1, 2 or 3, the reality is some open geospatial Resources are better suited to certain URL structures or Levels.
+
+image::images/Figure_4.png[Figure 4]
+
+Using the example of a WMTS again, it wouldn’t be practical to navigate to quattuordecillions of time-varying Tiles via hyperlinks at ‘Level 3’. But a metadata description for open geospatial Resources may contain many useful hypermedia controls to navigate to different Resources.
+
+As we consider URL structures another key concept for open geospatial Resources is the URI Template. A URI template establishes the structure of a URI (Resource URL) by indicating what values (parameters) can be added and what they represent. The syntax of a URI template is to enclose the parameters in braces, like this {{example}}. Another example is provided below.
+
+image::images/Figure_5.png[Figure 5]
+
+If we examine the URL in the example…
+
+https://tb12b.cubewerx.com/cubewerx/OpenImageMap/tilesets/PolarASAR/PolarASAR/default/interval:2012-01-20T11:22:33.444555666—2012-02-06T22:33:44.555666777/smerc/5/6/9.jop
+
+…we can see it is the result of a URI template that’s otherwise fully opaque, which means clients shouldn’t attempt to construct their own (beyond the prescribed variable substitutions). In this example the URI template reported by the Capabilities Resource (metadata) is:
+
+https://tb12b.cubewerx.com/cubewerx/OpenImageMap/tilesets/PolarASAR/PolarASAR/default/{QTime}/smerc/{TileMatrix}/{TileRow}/{TileCol}
+
+But the URI template could just as well have been:
+
+https://foo.com/foo{TileCol}foo{QTime}foo{TileRow}foo{TileMatrix}
+
+URI templates are useful at all Levels, depending on the open geospatial Resource type and access paths needed.
+
+Since the client shouldn’t attempt to interpret URI Templates and shouldn’t attempt to construct their own, whether or not the URL contains a version number or service identification and what its location and syntax is entirely up to the needs of the server. That’s one of the powers of the URI Template - the client requires no knowledge of the structures of the URLs beyond the URI Template variables, and the server is free to use whatever URLs are most convenient for it.
+
+Given this possible variability, a starting point is useful to answer three questions about relevant open geospatial Resources - "What are they?", "How do I get to them?", and "How do I get the things they may provide?".
+
+To help answer these questions the Capabilities Resource provides a complete metadata document for other Resources offered. Interactions with a set of OGC Resources usually commences by accessing the Capabilities document.
+
+Current OGC REST documentation describes two ways, the ‘Base URL’ and ‘Service Root’ to get to the Capabilities Resource. A Service Root is an actual URL where the Capabilities Resource exists. A Base URL is a URL prefix that the client appends parameters to in order to arrive at a valid request URL, including a request URL for the Capabilities Resource. This situation is the result of supporting previous methods while being new methods into the interoperability architecture.
+
+The versions supported are also stated in the Capabilities Resource. If a service supports several ersions, these may be advertised in different Capabilities documents provided at different ndpoints, For example, for Resources associated with processing functions this would be -
+
+http://my.url.com/wps-rest/1.0 
+
+and
+
+http://my.url.com/wps-rest/2.0
+
+For Resources associated with features this would be -
+
+http://www.someserver.com/wfs/1.0.0
+
+and
+
+http://www.someserver.com/wfs/2.0
+
+and so on.
+
+The Service Root and well-formed Base URLs bring up another key point. OGC Web Services have long-been criticized because nothing was available at the service URL - unless you appended a Request=GetCapabilities KVP. The starting points Service Root and well-formed Base URLs address this issue by providing both human and machine readable information about the Resources offered.
+
+The Capabilities Resource should include hypermedia controls (i.e. links) that let a client application move from the Capabilities to the other Resources offered. Applications can also go directly to the Resources if they know how.
+
+At Level 3 we can also begin to look at Resource constructs such as hypermedia controls in general. Hypermedia controls allow an application to obtain the URIs for Resources it needs by following links in the representation of the Resources themselves - not by relying on out-of-band information like URI patterns given in documentation. For example, the response to a query for features should include links that tell the client how to get the capabilities document of the service that offers the feature; of which feature collection the feature is a member; which feature is next in the current results set; what alternative representations of the feature are available.
+
+In addition, at Level 3 enterprises can start to build Associations between open geospatial Resources. As of Testbed 12, Associations are just beginning to be defined in open geospatial REST, but some examples are included in the graphic below.
+
+image::images/Figure_6.png[Figure 6]
+
+Associations are linkages between Resources, and can help break down the ‘stovepipes’ between open geospatial Resources. For example, an Association can indicate the source data set for a web map (the Association below is 'renders')
+[source,]
+----
+<Association rel="http://www.opengis.net/def/associationType/ogc/0/renders">
+<Source type="http://www.opengis.net/def/objectType/ogc/0/wms/layer"
+xlink:href="https://tb12.cubewerx.com/a011/cubeserv">
+<Identifier>USGS.Elev_Contour</Identifier>
+</Source>
+<Target type="http://www.opengis.net/def/objectType/ogc/0/wfs/featureType"
+xlink:href="https://tb12.cubewerx.com/a011/cubeserv?DATASTORE=USGS">
+<Identifier
+namespace="http://schemas.cubewerx.com/namespaces/null">Elev_Contour</Identifier>
+----
+
+It should be noted that REST is often viewed as synonomous with JSON. But REST does not restrict data transfer to a single encoding like JSON, or communication to a particular protocol like HTTP. Fielding even indicated a RESTful architecture can be built on FTP. However, the protocol designated for interface between Components in Testbed 12 was HTTP, the underlying protocol of the World Wide Web.
+
+Open geospatial REST also allows applications to select the output format most useful to their mission. For example, Resources can be represented in different encodings such as XML, RDF or JSON, depending on whether applications need complex analytics, linked data or simpler representations for web display.
+
+image::images/Figure-7.png[Figure 7]
+
+Finally, Testbed 12 assessed that most of the pieces are in place for a REST WFS to support geospatial intelligence features as GeoJSON-only - without the need for a new profile document. Several issues must be addressed, however, this type of GeoJSON WFS would simplify application development and open the potential to begin moving from GML to linked features and observations in JSON.
+
+image::images/Figure_8.png[Figure 8]
+
+With these key concepts you can begin to understand the basics of open geospatial Resources and REST. To better understand REST in the context of offering geospatial information and services you also need to know the Principles of REST and some of its advantages.
