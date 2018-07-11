@@ -1,9 +1,20 @@
-== Clauses not Containing Normative Material
+== Resources
 
-Paragraph
+As we move from Service Oriented to Resource Oriented distributed architectures, a key architectural decision is "what are the resources?"  Without a well understood and resiliant model of the resources, in all of their incarnations, the service, API, and architecture will be disapointing.
 
-=== Clauses not containing normative material sub-clause 1
+The following content provides a start on how to identify resources.  More is certainly needed.
 
-Paragraph
+[NOTE]
+====
+The following content was extracted from the Testbed 12 REST Architecture Engineering Report (OGC 16-035).  Some of this material is out of date.
+====
 
-=== Clauses not containing normative material sub-clause 2
+=== Identification of Resources
+
+The resources offered by a specific service type are defined in the service specification or data models referenced from the service specification. For example, as illustrated in Clause 6, the resources offered by a Sensor Observation Services (SOS) are defined in the Observations & Measurements (O&M) and Sensor Model Language (SensorML) standards. Similarly, the Web Feature Service offers features compliant to the General Feature Model.
+
+**Recommendation 2**: The resources offered by an OGC W*S RESTful API should be compliant to the data specifications of the corresponding service specifications. Furthermore, the resources should be idenifiable by a unique identifer.
+
+**Recommendation 3**: All OGC REST implementations shall follow the general REST requirement that resources are identifiable by an unique URI.
+
+In addition, there should be an unique entry point for the resources. This recommendation is given below in the section about the API description and Capabilities document.

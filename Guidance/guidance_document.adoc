@@ -99,6 +99,9 @@ include::clause_8_Resources.adoc[]
 
 include::clause_9_HTTP.adoc[]
 
+include::clause_10_Filters.adoc[]
+
+include::clause_11_API_Description.adoc[]
 <<<
 ////
 add or remove annexes after "A" as necessary

@@ -1,0 +1,27 @@
+== Filters
+[NOTE]
+====
+The following content was extracted from the Testbed 12 REST Architecture Engineering Report (OGC 16-035).  Some of this material is out of date.
+====
+
+=== Description of API & Discovery of Resources
+
+As shown in the previous Clause 13, there is currently no single way how the OGC REST APIs are described. Some are using plain XML documents without links to resources, others are embedding links to resources in the XML Capabilites, and others are providing a JSON encoding of the Capabilities with embedded links to resources. There is hence a need for harmonization of the different approaches.
+
+[NOTE]
+====
+This recommendation should be replaced by a description of how OpenAPI and AsyncAPI should be used to fill this need.  A discussion of how OAS and Capabilities can co-exist should also be included.  Consider, that it may become necessary to generate OAS documents from a capabilites document.  
+====
+
+One approach is to utilize the Capabilities document as an entry point to the resources. The WPS REST server developed in Testbed 12 (Clause 11) provides an example how this may look like. In addition the retrieval of the Capabilities document differs between the different REST APIs.
+
+**Recommendation 8**: The Capabilities document should be provided at the root of the API endpoint.
+
+**Recommendation 9**: The Capabilities document should provide an entry point to the resources offered by the API. As there currently is not a concrete JSON encoding of the Capabilities document specified, the encodings vary as well. Hence, there is a need for a specification of a JSON encoding of the Capabilities document.
+
+**Recommendation 10**: A JSON encoding of the Capabilities document should be specified.
+
+If REST servers and clients would follow completely the HATEOAS principle, no further information
+would be needed, since requesting the allowed HTTP methods on a particular resource via the HTTP OPTIONS method would be sufficient. However, as in reality most of the REST APIs are not providing a full HATEOAS support, this information is needed in an API description. As stated above the OperationsMetadata is difficult to apply for the REST API description, in particular which HTTP methods need to be applied in order to retrieve or manipulate the resources offered by the OGC REST API. We hence suggest to also specify the provision of an additional API description file that is based on common Web standards already in use. One possible approach would be to utilize the OpenAPI specification and provide best practices how OpenAPI descriptions can be provided for OGC REST APIs.
+
+**Recommendation 11**: The OGC should specify how an additional API description can be provided that defines how HTTP methods can be applied to the resources offered in order to retrieve or manipulate them.

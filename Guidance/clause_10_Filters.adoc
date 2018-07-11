@@ -1,0 +1,17 @@
+== Filters
+[NOTE]
+====
+The following content was extracted from the Testbed 12 REST Architecture Engineering Report (OGC 16-035).  Some of this material is out of date.
+====
+
+=== Filter Parameters and Content Negotiation
+
+A common use case is to apply spatial filters on collections of resources, e.g. the bounding box filter. As it is already common practice to utilize URL parameters for this purpose, it is also recommended to utilize them for applying filters to resource collection, for example:
+
+    https://my.wfs.org/rest/featureCollection?bbox=7.0,52.0,8.0,53.0
+
+**Recommendation 14**: Filters that should be applied to the resources should be given in the URL as URL parameters.
+
+In the implementation of OGC REST APIs, different options mechanism for content negotiation are implemented. As using the ACCEPT parameter of the HTTP header is already commmon practice, we recommend to specify this option as mandatory.
+
+**Recommendation 15**: Content negotiation should be implemented by OGC REST APIs using the ACCEPT parameter of HTTP headers.
