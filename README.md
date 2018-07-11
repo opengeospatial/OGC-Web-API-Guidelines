@@ -6,19 +6,19 @@ Latest published version:
  https://github.com/opengeospatial/OGC-Web-API-Guidelines/[*HTML*] 
  https://github.com/opengeospatial/OGC-Web-API-Guidelines.pdf[*PDF*]
 
-== Purpose
+## Purpose
 
 Great RESTful APIs look like they were designed by a single team. This promotes API adoption, reduces friction, and enables clients to use them properly. To build APIs that meet this standard, and to answer many common questions encountered along the way of RESTful API development, the OGC Architecture Board (OAB) has created this set of guidelines. We have shared it with you to inspire additional discussion and refinement within and among your teams, and contribute our learnings and suggestions to the tech community at large.
 
-== Usage
+## Usage
 
 Feel free to use these guidelines as a guidance for your own development. You should consider this to be a living, evolving document. Each principle has a corresponding Issue on the GitHub site.  Please use these Issues to discuss changes, corrections, and enhancements to the principles..
 
-== Design Principles
+## Design Principles
 
 [Follow the discussion on GitHub Issue 2 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/2)
 
-=== Why API Design Principles 
+### Why API Design Principles 
 
 The design of a Web API should follow a common pattern to ensure easy adoption
 
@@ -30,7 +30,7 @@ In particular avoid that APIs are fundamentally different to access and manage F
     
 Please follow this presentation to observe the idea of the proposed OGC Web API design principles.
 
-=== Principle #1 – Don’t Reinvent
+### Principle #1 – Don’t Reinvent
 
 [Follow the discussion on GitHub Issue 3 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/3)
 
@@ -38,7 +38,7 @@ Aspects that are already solved in main-stream IT, simply adopt.
 
 Just domain specific aspects - And that will be a lot.
 
-=== Principle #2 – Keep It Simple and Intuitive
+### Principle #2 – Keep It Simple and Intuitive
 
 [Follow the discussion on GitHub Issue 4 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/4)
 
@@ -50,7 +50,7 @@ Make the developer of the API successful as quickly as possible!
 
 Don’t forget to build in security from the start!
 
-=== Principle #3 – Keep the Base URL Simple
+### Principle #3 – Keep the Base URL Simple
 
 [Follow the discussion on GitHub Issue 5 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/5)
 
@@ -74,7 +74,7 @@ Use HTTP methods as verbs
 
     GET /v1/features/highway or /v1/features/highway/A8
 
-=== Principle #4 – Use CRUD
+### Principle #4 – Use CRUD
 
 [Follow the discussion on GitHub Issue 6 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/6)
 
@@ -92,7 +92,7 @@ Also support HTTP communications methods:
     HEAD to return HTTP Headers with no payload
     OPTIONS to support CORS
 
-=== Principle #5 – Don’t mix Singular and Plural
+### Principle #5 – Don’t mix Singular and Plural
 
 [Follow the discussion on GitHub Issue 7 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/7)
 
@@ -113,7 +113,7 @@ E.g. using plural
     PUT /v1/maps/green_spaces/area51
     GET /v1/tiles/water_ways/4326/0/0
 
-=== Principle #6 – Put Complexity behind the ‘?’
+### Principle #6 – Put Complexity behind the ‘?’
 
 [Follow the discussion on GitHub Issue 8 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/8)
 
@@ -136,7 +136,7 @@ should that return false or null?
 
 Use of the query string to select resources is highly domain specific and must be described on a case to case basis
 
-=== Principle #7 – Error Handling
+### Principle #7 – Error Handling
 
 [Follow the discussion on GitHub Issue 9 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/9)
 
@@ -157,7 +157,7 @@ information how to fix things + contact details
       "contact_details": "..."  
     }
 
-=== Principle #8 – HTTP Status Codes
+### Principle #8 – HTTP Status Codes
 
 [Follow the discussion on GitHub Issue 10 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/10)
 
@@ -176,7 +176,7 @@ More then 70 HTTP status codes exist (summary in RFC 7231).  You should reduce t
 |  | - 412 - Precondition Failed 
 | - 500 - Internal Server Error | - 503 - Service Unavailable 
 
-=== Principle #9 – Use of HTTP Header
+### Principle #9 – Use of HTTP Header
 
 [Follow the discussion on GitHub Issue 11 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/11)
 
@@ -188,7 +188,7 @@ For Web-Applications use of “non-default” headers has performance pushback f
 
     e.g. HTTP Authorization header on a cross-domain request causes execution of CORS (W3C Recommendation) => Pre-flight request…
 
-=== Principle #10 - Pagination
+### Principle #10 - Pagination
 
 [Follow the discussion on GitHub Issue 12 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/12)
 
@@ -204,7 +204,7 @@ As an alternative to application processing the response, you should try to use 
     
     – This approach is application neutral and should be provided by the API as the default
 
-=== Principle #11 – Partial Responses
+### Principle #11 – Partial Responses
 
 [Follow the discussion on GitHub Issue 13 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/13)
 
@@ -224,7 +224,7 @@ Advantage of option 2: It can be combined with other search options
 
     /v1/features/highways?id=A8&fields=name,geometry
 
-=== Principle #12 – Not Accessing Resources
+### Principle #12 – Not Accessing Resources
 
 [Follow the discussion on GitHub Issue 14 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/14)
 
@@ -237,7 +237,7 @@ Example to transform feature using different CRS
     /v1/transform/features/highway/A8?
     fromCRS=4326&toCRS=WGS84
 
-=== Principle #13 – Metadata
+### Principle #13 – Metadata
 
 [Follow the discussion on GitHub Issue 15 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/15)
 
@@ -256,7 +256,7 @@ Starting with the next level, use URL path structures used for accessing resourc
     
 Allow ‘?’ operator to send selection queries
 
-=== Principle #14 – Security
+### Principle #14 – Security
 
 [Follow the discussion on GitHub Issue 16 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/16)
 
@@ -265,13 +265,13 @@ Host your API on HTTPS
 . Require OAuth2 Bearer Tokens to control access
 . Use OpenID Connect to fetch use claims
 
-=== Principle #15 – Miscellaneous
+### Principle #15 – Miscellaneous
 
 [Follow the discussion on GitHub Issue 17 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/17)
 
 Describe the API in OpenAPI has value to the developer
 
-=== Principle #16 - Use Well-Known Resource Classes
+### Principle #16 - Use Well-Known Resource Classes
 
 [Follow the discussion on GitHub Issue 18 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/18)
 
@@ -299,13 +299,13 @@ Testbed 12 defined over 20 open geospatial Resource Classes (below). Geospatial 
 | Coverage Subset | A coverage derived on the fly from a subset operation applied to a persistent coverage. *The subset of a coverage is still a coverage.
 | Coverage Range | A coverage derived on the fly from a range subsetting operation applied to a persistent coverage *The range subset of a coverage is still a coverage.
 
-=== Principle 17 - Use Well-Known URL Templates and Access Paths
+### Principle 17 - Use Well-Known URL Templates and Access Paths
 
 [Follow the discussion on GitHub Issue 19 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/19)
 
 Great RESTful APIs look like they were designed by a single team. The most obvious properties of an API are the access paths and the URL templates which define them. Therefore, OGC conventions for the construction of access path templates are essential.  Some of these templates are emerging though the Web Feature Service 3.0 efforts. They should be captured, formalized, and provided for re-use.
 
-=== Principle 18 - Great APIs are testable
+### Principle 18 - Great APIs are testable
 
 [Follow the discussion on GitHub Issue 20 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/20)
 
