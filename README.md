@@ -18,17 +18,23 @@ Feel free to use these guidelines as a guidance for your own development. You sh
 
 [Follow the discussion on GitHub Issue 2 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/2)
 
+The Design Principles listed here are taken from a presentation [OGC Web Design Principles](https://portal.opengeospatial.org/files/?artifact_id=78344) (requires OGC portal login) given during the OGC TC meeting in Orleans and Fort Collins. The presentation summerizes a collection of the Web API design principles used today by major players in main stream IT business. The purpose of the presentation is to ensure that the "common part of an API" is designed such that it can be re-used and a adopted easily. However, the presentation is not perfect in the sense that it might be incomplete and that there is room left for a good consensus discussion.
+
+The original author of the presentation has agreed to make the content available in this open Github repo for the purpose of creating a starting point in discussion and deriving a set of guidelines that could eventually be used to test OGC Web API Implementation Standards for conformance.
+
 ### Why API Design Principles 
 
-The design of a Web API should follow a common pattern to ensure easy adoption
+The design of a Web API should follow a common pattern to ensure easy adoption.
 
-There are common design principles in main-stream IT that should be adopted to ease the adoption of OGC Web APIs
+There are common design principles in main-stream IT that should be adopted to ease the adoption of OGC Web APIs.
 
 But still, there are some aspects that would need to be agreed upon to ensure seamless APIs for different thematic topics in OGC.
 
-In particular avoid that APIs are fundamentally different to access and manage Features, Maps, Tiles, Coverages, Observations, Processes, etc.
+In particular avoid that APIs are fundamentally different to access and manage different kinds of geospatial assets such as Features, Maps, Tiles, Coverages, Observations, Processes, etc.
     
-Please follow this presentation to observe the idea of the proposed OGC Web API design principles.
+Please follow the issues created for a discussion to observe the idea of the proposed OGC Web API design principles.
+
+**Important note: You may not and must not entirely agree with the presented principles. Important is to share your agreement or disagreement by contributing to an issue!**
 
 ### Principle #1 – Don’t Reinvent
 
@@ -36,7 +42,7 @@ Please follow this presentation to observe the idea of the proposed OGC Web API 
 
 Aspects that are already solved in main-stream IT, simply adopt.
 
-Just domain specific aspects - And that will be a lot.
+Just focus on (OGC) domain specific aspects - And that will be a lot.
 
 ### Principle #2 – Keep It Simple and Intuitive
 
@@ -82,30 +88,33 @@ Allow CRUD **Create, Read, Update, Delete,** and **Execute**
 
 Allow HTTP methods that operate on resources; **GET, POST, PUT, DELETE**
 
+Define the semantics carefully when a method is invoked on a particular resource / resources determined by the path. E.g.
+
 | Resource  | POST  | GET  | PUT | DELETE 
 | -- | -- | -- | -- | -- 
 | /.../highways | create a new highway | list all highways | bulk update of highways | delete all highways  
 | /.../highways/A8 | Error! | show A8 | If exists: Update A8 else: Create A8 | delete highway A8
 
-Also support HTTP communications methods:
+Do not force all semantics in just HTTP GET!
+
+Also support HTTP communication methods:
 
     HEAD to return HTTP Headers with no payload
-    OPTIONS to support CORS
+    OPTIONS to support W3C CORS
 
 ### Principle #5 – Don’t mix Singular and Plural
 
 [Follow the discussion on GitHub Issue 7 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/7)
 
-It doesn’t matter if you use Singular or Plural for your
-nouns to build the path. But, don’t mix!
+It doesn’t matter if you use Singular or Plural for your nouns to build the path. But, don’t mix!
 
 Use concrete names to build the path
 
     /v1/<kind>/<type>
 
-kinds using plural := {features, maps, tiles, coverages, observations, processes, facts, ...}
+kind using plural := {features, maps, tiles, coverages, observations, processes, facts, ...}
 
-kinds using singular := {feature, map, tile, coverage, observation, process, fact, …}
+kind using singular := {feature, map, tile, coverage, observation, process, fact, …}
 
 E.g. using plural
 
@@ -117,14 +126,14 @@ E.g. using plural
 
 [Follow the discussion on GitHub Issue 8 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/8)
 
-This where the fun begins
+This where the fun begins. The radical idea behind the '?' concept is that everything **left** of the **'?'** (the path design) should be identical regardless of the kind of resource and that everything **right** of the **'?'** may introduce domain specific aspects.
 
-query-string parameters should be used to select a resource(s) based on the(ir) characteristics
+The query-string parameters should be used to select a resource(s) based on the(ir) characteristics - aka filter
 
     /v1/features/highways?id=A8 => returns highway A8
     /v1/features/highways?id=A8,A9 => returns highways A8 and A9
 
-But what if you select on a resource instance?
+But what if you select on a resource instance and add a filter parameter?
 
     /v1/features/highways/A8?id=A8
     
@@ -132,19 +141,19 @@ should that return true or the resource?
 
     /v1/features/highways/A8?id=A81
 
-should that return false or null?
+should that return false or null (assuming the id of A8 is not A81)?
 
-Use of the query string to select resources is highly domain specific and must be described on a case to case basis
+Use of the query string to select resources is highly domain specific and must be described on a case to case basis.
 
 ### Principle #7 – Error Handling
 
 [Follow the discussion on GitHub Issue 9 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/9)
 
-Error Codes are the developers insight into your API. So be precise and as detailed as possible
+Error Codes are the developers insight into your API. So be precise and as detailed as possible.
 
-Usually, errors are associated with HTTP status codes
+Usually, errors are associated with HTTP status codes.
 
-But, support a "switch off" which always returns a status code 200 plus additional information in the response body
+But, support a "switch off" which always returns a status code 200 plus additional (debug / insight) information in the response body
 
     e.g. ?suppress_response_codes=true
 
@@ -176,11 +185,15 @@ More then 70 HTTP status codes exist (summary in RFC 7231).  You should reduce t
 |  | - 412 - Precondition Failed 
 | - 500 - Internal Server Error | - 503 - Service Unavailable 
 
+But what to do with the 'redirect' status codes? To be used with care: 301, 302, 303, 307 and 308 or not allowed?
+
+What about status code 100?
+
 ### Principle #9 – Use of HTTP Header
 
 [Follow the discussion on GitHub Issue 11 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/11)
 
-Used to provide information that *does not* change the logic of the API (e.g. HTTP Authorization)
+HTTP Header are used to provide information that *does not* change the logic of the API (e.g. HTTP Authorization)
 
 Keep in mind that not all JS-API support adding “stuff” into the HTTP request header! (e.g. Leaflet JS Library)
 
@@ -196,7 +209,7 @@ Use **limit** and **offset** as query string parameters is common sense
 
     e.g. /v1/features/highways?limit=50&offset=100
 
-You must return metadata with each response providing the total number of resources available (e.g. total)
+Issue: The API must return metadata with each response providing the total number of resources available (e.g. total) in the payload.
 
 As an alternative to application processing the response, you should try to use Web Linking (RFC 5988)
 
@@ -243,7 +256,7 @@ Example to transform feature using different CRS
 
 This part of the API helps the developer to understand what “the deal is with the resources”
 
-Use a clear and dedicated endpoint to provide metadata
+Do not use a path pointing to resources. Use a clear and dedicated endpoint to provide metadata.
 
     clearly different from the resource endpoints
     /v1/metadata or /v1/discover
@@ -254,60 +267,42 @@ Starting with the next level, use URL path structures used for accessing resourc
     /v1/metadata/features/highways
     /v1/metadata/features/highways/A8
     
-Allow ‘?’ operator to send selection queries
+Allow ‘?’ operator to send selection queries (specify a search or filter option).
 
 ### Principle #14 – Security
 
 [Follow the discussion on GitHub Issue 16 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/16)
 
-Host your API on HTTPS
+Host your API on HTTPS.
 
 . Require OAuth2 Bearer Tokens to control access
 . Use OpenID Connect to fetch use claims
 
-### Principle #15 – Miscellaneous
+### Principle #15 – API Description
 
 [Follow the discussion on GitHub Issue 17 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/17)
 
-Describe the API in OpenAPI has value to the developer
+Describing the API in OpenAPI has value to the developer.
 
-### Principle #16 - Use Well-Known Resource Classes
+### Principle #16 - Content-Type Negotiation
 
 [Follow the discussion on GitHub Issue 18 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/18)
 
-Testbed 12 defined over 20 open geospatial Resource Classes (below). Geospatial Enterprises should use these well-known definitions their APIs.
+Use HTTP request header 'Content-Type' to request the response in a particular content type as defined in [RFC 1341](https://tools.ietf.org/html/rfc1341)
 
-| Resource | Definition
-| -- | -- 
-| Capabilities | The complete service metadata document.
-| Tile | A rectangular pictorial representation of geographic data, often part of a set of such elements, covering a spatially contiguous extent and sharing similar information content and graphical styling, which can be uniquely defined by a pair of indices for the column and row along with an identifier for the tile matrix.
-| FeatureInfo | Insert definition here from Wiki when there’s time.
-| Schema | The complete application schema offered by the server.
-| Feature Type | A feature type (i.e. a named collection of features with the same schema)
-| Feature | A feature (i.e. a member of a feature type)
-| Feature Type Property | A named property from the schema of a feature type.
-| Feature Property | A named property from the schema of a feature.
-| Query | A complex query resource.
-| Transaction | A complex transaction resource.
-| Process | Detailed process description of a single process.
-| Process Collection | List of processes available.
-| JobCollection | List of jobs of a process.
-| Job | Representation of a job (execution of a process) containing status information.
-| Process Output Data | Resource containing the different process outputs inline or as reference.
-| Coverage | Full coverage in the format negotiated by the client and server through the proper HTTP Headers (e.g. Accept)
-| Coverage Description | Full metadata regarding one specific coverage in negotiated format.
-| Coverage Subset | A coverage derived on the fly from a subset operation applied to a persistent coverage. *The subset of a coverage is still a coverage.
-| Coverage Range | A coverage derived on the fly from a range subsetting operation applied to a persistent coverage *The range subset of a coverage is still a coverage.
+Use [IANA Media Types](https://www.iana.org/assignments/media-types/media-types.xhtml) whenever possible. 
 
-### Principle 17 - Use Well-Known URL Templates and Access Paths
+### Principle 17 - Use Well-Known URIs
 
 [Follow the discussion on GitHub Issue 19 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/19)
 
-Great RESTful APIs look like they were designed by a single team. The most obvious properties of an API are the access paths and the URL templates which define them. Therefore, OGC conventions for the construction of access path templates are essential.  Some of these templates are emerging though the Web Feature Service 3.0 efforts. They should be captured, formalized, and provided for re-use.
+IANA and other standardization organizations have defined so called well known URLs for different purposes.
 
-### Principle 18 - Great APIs are testable
+E.g. [Well Known URIs](https://www.iana.org/assignments/well-known-uris/well-known-uris.xhtml)
+
+### Principle 18 - Good APIs are testable at Design Phase already
 
 [Follow the discussion on GitHub Issue 20 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/20)
 
-Testbed 14 is developing a compliance test for WFS 3.0.  This compliance test starts with the OpenAPI (OAS) document for a WFS 3.0 service. It then traverses the OAD document looking for testable paths. This process requires that the service and OAS document comply with the conventions developed through the WFS 3.0 effort. These conventions will become refined and formalized over time.  An API which does not comply with these conventions will not be testable.     
+Any OGC Web API developed according to the developed guidelines can be tested at design phase already by validating compliance with the developed design principles. Possible results when assessing a principle could be (i) "the designed API is conformant with  principle #x", or (ii) "the desinged API is **not** conformant with principle #x. Reason: **...**"
 
