@@ -30,15 +30,17 @@ The Design Principles listed here are taken from a presentation [OGC Web API Des
 
 The original author of the presentation has agreed to make the content available in this open Github repo for the purpose of creating a starting point in discussion and deriving a set of guidelines that could eventually be used to test OGC Web API Implementation Standards for conformance.
 
-### Why API Design Principles 
+### Why OGC API Design Principles 
 
-The design of a Web API should follow a common pattern to ensure easy adoption.
+The following is a set of common design principals for developing any Web API.
 
-There are common design principles in main-stream IT that should be adopted to ease the adoption of OGC Web APIs.
+- The design of a Web API should follow a common pattern to ensure easy adoption.
 
-But still, there are some aspects that would need to be agreed upon to ensure seamless APIs for different thematic topics in OGC.
+- There are common design principles in main-stream IT that should be adopted to ease the adoption of OGC Web APIs.
 
-In particular avoid that APIs are fundamentally different to access and manage different kinds of geospatial assets such as Features, Maps, Tiles, Coverages, Observations, Processes, etc.
+- But still, there are some aspects that would need to be agreed upon to ensure seamless APIs for different thematic topics in OGC.
+
+- In particular avoid that APIs are fundamentally different to access and manage different kinds of geospatial assets such as Features, Maps, Tiles, Coverages, Observations, Processes, etc.
     
 Please follow the issues created for a discussion to observe the idea of the proposed OGC Web API design principles.
 
@@ -48,9 +50,10 @@ Please follow the issues created for a discussion to observe the idea of the pro
 
 [Follow the discussion on GitHub Issue 3 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/3)
 
-Aspects that are already solved in main-stream IT, simply adopt.
+For aspects and functional capabilities that are already solved in main-stream IT and meet geospatial community requirement, simply adopt these API elements.
 
-Just focus on (OGC) domain specific aspects - And that will be a lot.
+Focus instead on geo-centric and domain specific requirements to create new APIs or extend existing APIs. There is plenty of work to be done here.
+
 
 #### OBJECTIVE: What is the best way to ensure re-use or adaption of existing design patterns?
 
@@ -60,11 +63,15 @@ Just focus on (OGC) domain specific aspects - And that will be a lot.
 
 Who are you targeting?
 
+Know your audience!
+
 What are you trying to achieve?
 
 Make the developer of the API successful as quickly as possible!
 
 Don’t forget to build in security from the start!
+
+API design should not begin with technical documentation, but should rather originate from your fundamental goals.
 
 #### OBJECTIVE: Ensure Web API design review in early stage. But how?
 
@@ -72,11 +79,11 @@ Don’t forget to build in security from the start!
 
 [Follow the discussion on GitHub Issue 5 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/5)
 
-Never release an API without versioning
+Never release an API without versioning information
 
-Use a version string as the most left of your path
+Use a version string as the most left most element of your path
 
-    /v1 (don’t you dot notation)
+    /v1 (don’t use dot notation)
 
 Add the kind of resource to the path
 
@@ -86,11 +93,9 @@ Use **nouns** not verbs to build the path to resources
 
     /v1/features/highway or /v1/maps/topo25 etc.
 
-Use two base URLs per resource kind
-
 Use HTTP methods as verbs
 
-    GET /v1/features/highway or /v1/features/highway/A8
+    GET /v1/features/highway or PUT /v1/features/highway/A8
 
 #### OBJECTIVE: Finalize the URL structure including the versioning aspect.
 
@@ -98,7 +103,7 @@ Use HTTP methods as verbs
 
 [Follow the discussion on GitHub Issue 6 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/6)
 
-Allow CRUD **Create, Read, Update, Delete,** and **Execute**
+Allow CRUD operations: **Create, Read, Update, Delete,** and **Execute**
 
 Allow HTTP methods that operate on resources; **GET, POST, PUT, DELETE**
 
@@ -122,7 +127,7 @@ Also support HTTP communication methods:
 
 [Follow the discussion on GitHub Issue 7 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/7)
 
-It doesn’t matter if you use Singular or Plural for your nouns to build the path. But, don’t mix!
+It doesn’t matter if you use singular or plural for your nouns to build the path but, don’t mix them!
 
 Use concrete names to build the path
 
@@ -132,7 +137,7 @@ kind using plural := {features, maps, tiles, coverages, observations, processes,
 
 kind using singular := {feature, map, tile, coverage, observation, process, fact, …}
 
-E.g. using plural
+Examples of plural:
 
     POST /v1/features/tiger_roads/
     PUT /v1/maps/green_spaces/area51
@@ -146,7 +151,7 @@ E.g. using plural
 
 This where the fun begins. The radical idea behind the '?' concept is that everything **left** of the **'?'** (the path design) should be identical regardless of the kind of resource and that everything **right** of the **'?'** may introduce domain specific aspects.
 
-The query-string parameters should be used to select a resource(s) based on the(ir) characteristics - aka filter
+The "query-string" parameters should be used to select a resource(s) based on the(ir) characteristics - aka filter
 
     /v1/features/highways?id=A8 => returns highway A8
     /v1/features/highways?id=A8,A9 => returns highways A8 and A9
@@ -155,13 +160,13 @@ But what if you select on a resource instance and add a filter parameter?
 
     /v1/features/highways/A8?id=A8
     
-should that return true or the resource?
+Should the request above return *true* or *the resource itself*?
 
     /v1/features/highways/A8?id=A81
 
-should that return false or null (assuming the id of A8 is not A81)?
+Should the request above return *false* or '*NULL*' (assuming the id of A8 is not A81)?
 
-Use of the query string to select resources is highly domain specific and must be described on a case to case basis.
+Use of the query string to select resources is highly domain specific and must be described on a case by case basis.
 
 #### OBJECTIVE: Identify all the common elements that exist to the **right** of the **'?'**.
 
@@ -171,14 +176,16 @@ Use of the query string to select resources is highly domain specific and must b
 
 Error Codes are the developers insight into your API. So be precise and as detailed as possible.
 
+Error handling is often one of the biggest complaints when using an API.
+
 Usually, errors are associated with HTTP status codes.
 
-But, support a "switch off" which always returns a status code 200 plus additional (debug / insight) information in the response body
+However, support a "switch off" that always returns a status code 200 plus additional (debug / insight) information in the response body
 
     e.g. ?suppress_response_codes=true
 
 Return detailed human readable error no. + description +
-information how to fix things + contact details
+information on how to fix things + contact details
 
     { "developer_message": "…",
       "user_message": "...",
@@ -192,7 +199,7 @@ information how to fix things + contact details
 
 [Follow the discussion on GitHub Issue 10 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/10)
 
-More then 70 HTTP status codes exist (summary in RFC 7231).  You should reduce to the most important ones
+More then 70 HTTP status codes exist (summary in RFC 7231).  You should reduce the use in your API to the most important ones. For example:
 
 | Option Set #1 – Basic set |  Option Set #2 – Additional
 | -- | -- 
@@ -211,15 +218,15 @@ But what to do with the 'redirect' status codes? To be used with care: 301, 302,
 
 What about status code 100?
 
-#### OBJECTIVE: Agree on the semantics of HTTP status codes and their use.
+#### OBJECTIVE: Agree on a minimum set and their semantics.
 
 ### Principle #9 – Use of HTTP Header
 
 [Follow the discussion on GitHub Issue 11 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/11)
 
-HTTP Header are used to provide information that *does not* change the logic of the API (e.g. HTTP Authorization)
+The HTTP Header is used to provide information that *does not* change the logic of the API (e.g. HTTP Authorization)
 
-Keep in mind that not all JS-API support adding “stuff” into the HTTP request header! (e.g. Leaflet JS Library)
+Keep in mind that not all JS-API support the use of HTTP request headers! (e.g. Leaflet JS Library)
 
 For Web-Applications use of “non-default” headers has performance pushback for cross-domain requests
 
@@ -231,13 +238,13 @@ For Web-Applications use of “non-default” headers has performance pushback f
 
 [Follow the discussion on GitHub Issue 12 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/12)
 
-Use **limit** and **offset** as query string parameters is common sense
+Use of **limit** and **offset** as "query-string" parameters is common sense
 
     e.g. /v1/features/highways?limit=50&offset=100
 
 Issue: The API must return metadata with each response providing the total number of resources available (e.g. total) in the payload.
 
-As an alternative to application processing the response, you should try to use Web Linking (RFC 5988)
+As an alternative to application processing of the response, you should try to use Web Linking (RFC 5988)
 
     – Use HTTP Response Header to provide URLs for fetching the next / previous page
     
@@ -249,11 +256,11 @@ As an alternative to application processing the response, you should try to use 
 
 [Follow the discussion on GitHub Issue 13 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/13)
 
-Allow the developer to fetch just not all the detail of a resource but select the fields of interest
+Allow the developer to fetch just not all of the detail of a resource but to also select the fields of interest.
 
 How to design the API to support this?
 
-Option 1: Integrate into path
+Option 1: Integrate into path:
 
     /v1/features/highways/A8:(name, geometry)
 
@@ -261,7 +268,7 @@ Option 2: Use comma separated list as query parameter e.g. fields
 
     /v1/features/highways/A8?fields=name,geometry
 
-Advantage of option 2: It can be combined with other search options
+The advantage of option 2 is that this approach can be combined with other search options:
 
     /v1/features/highways?id=A8&fields=name,geometry
 
@@ -275,7 +282,7 @@ Use **verbs** to offer **operations** on resources
 
     /v1/transform
 
-Example to transform feature using different CRS
+An example is a request to transform a feature to a different CRS that the source:
 
     /v1/transform/features/highway/A8?
     fromCRS=4326&toCRS=WGS84
@@ -299,7 +306,7 @@ Starting with the next level, use URL path structures used for accessing resourc
     /v1/metadata/features/highways
     /v1/metadata/features/highways/A8
     
-Allow ‘?’ operator to send selection queries (specify a search or filter option).
+Allow the use of the ‘?’ operator to send selection queries (specify a search or filter option).
 
 #### OBJECTIVE: Agree on the mechanism or conclude on an alternative approach.
 
@@ -309,8 +316,7 @@ Allow ‘?’ operator to send selection queries (specify a search or filter opt
 
 Host your API on HTTPS.
 
-. Require OAuth2 Bearer Tokens to control access
-. Use OpenID Connect to fetch use claims
+Require OAuth2 Bearer Tokens to control access. Use OpenID Connect to fetch user claims.
 
 #### OBJECTIVE: Complete this principle based on your requirements.
 
