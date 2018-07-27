@@ -1,6 +1,6 @@
 # OGC Web API Guidance
 
-## A Comprehensive Set of Guidelines for developing OGC serivces using REST and OpenAPI.
+## A Comprehensive Set of Guidelines for developing OGC Web APIs 
 
 Latest published version: 
  https://github.com/opengeospatial/OGC-Web-API-Guidelines/[*HTML*] 
@@ -8,17 +8,25 @@ Latest published version:
 
 ## Purpose
 
-Great RESTful APIs look like they were designed by a single team. This promotes API adoption, reduces friction, and enables clients to use them properly. To build APIs that meet this standard, and to answer many common questions encountered along the way of RESTful API development, the OGC Architecture Board (OAB) has created this set of guidelines. We have shared it with you to inspire additional discussion and refinement within and among your teams, and contribute our learnings and suggestions to the tech community at large.
+The implementation of Web APIs that allow the management of geospatial information should be possible by anyone familiar with the Web APIs designed for main stream IT. However, when designing a Web API by multiple domain experts, and not only by one team, and when trying to address multi purpose usage, it becomes challenging to ensure a common design pattern among all teams. 
+
+To ensure that (i) Web API design across all different domains of expertise is coherent and (ii) the maximum from main stream IT design pattern is reused, the OGC Architecture Board (OAB) has created this first set of guidelines. We have shared it with you to inspire additional discussion and refinement within and among your teams, and contribute our learnings and suggestions to the tech community at large.
+
+With some of the desing patterns published here, you can simply agree or disagree but. But for others, we require to conclude a particular way of doing things. For example, Design Principle #4 - CRUD requires that all different domain experts in the OGC agree to a common semantics what the effect of a particular method is when applied to a URI.
 
 ## Usage
 
-Feel free to use these guidelines as a guidance for your own development. You should consider this to be a living, evolving document. Each principle has a corresponding Issue on the GitHub site.  Please use these Issues to discuss changes, corrections, and enhancements to the principles..
+Each principle has a corresponding Issue on the GitHub site.  Please use these Issues to discuss changes, corrections, and enhancements to the principles.
+
+Once the discussions imply to conclude on a stable outcome, the OGC Architecture Board would like to consider packaging the design principles as OGC Web API Design Guidelines.
+
+Each Design Principle has a Common Objective that we like to conclude on. Please focus your feedback towards this objective.
 
 ## Design Principles
 
 [Follow the discussion on GitHub Issue 2 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/2)
 
-The Design Principles listed here are taken from a presentation [OGC Web Design Principles](https://portal.opengeospatial.org/files/?artifact_id=78344) (requires OGC portal login) given during the OGC TC meeting in Orleans and Fort Collins. The presentation summerizes a collection of the Web API design principles used today by major players in main stream IT business. The purpose of the presentation is to ensure that the "common part of an API" is designed such that it can be re-used and a adopted easily. However, the presentation is not perfect in the sense that it might be incomplete and that there is room left for a good consensus discussion.
+The Design Principles listed here are taken from a presentation [OGC Web API Design Principles](https://portal.opengeospatial.org/files/?artifact_id=78344) (requires OGC portal login) given during the OGC TC meetings in Orleans and Fort Collins. The presentation summerizes a collection of the Web API design principles used today by major players in main stream IT business. The purpose of the presentation is to ensure that the "common part of an API" is designed such that it can be re-used and a adopted easily. However, the presentation is not perfect in the sense that it might be incomplete and that there is room left for a good consensus discussion.
 
 The original author of the presentation has agreed to make the content available in this open Github repo for the purpose of creating a starting point in discussion and deriving a set of guidelines that could eventually be used to test OGC Web API Implementation Standards for conformance.
 
@@ -44,6 +52,8 @@ Aspects that are already solved in main-stream IT, simply adopt.
 
 Just focus on (OGC) domain specific aspects - And that will be a lot.
 
+#### OBJECTIVE: What is the best way to ensure re-use or adaption of existing design patterns?
+
 ### Principle #2 – Keep It Simple and Intuitive
 
 [Follow the discussion on GitHub Issue 4 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/4)
@@ -55,6 +65,8 @@ What are you trying to achieve?
 Make the developer of the API successful as quickly as possible!
 
 Don’t forget to build in security from the start!
+
+#### OBJECTIVE: Ensure Web API design review in early stage. But how?
 
 ### Principle #3 – Keep the Base URL Simple
 
@@ -70,7 +82,7 @@ Add the kind of resource to the path
 
     /v1/{features, maps, tiles, coverages, processes}
 
-Use nouns not verbs to build the path
+Use **nouns** not verbs to build the path to resources
 
     /v1/features/highway or /v1/maps/topo25 etc.
 
@@ -79,6 +91,8 @@ Use two base URLs per resource kind
 Use HTTP methods as verbs
 
     GET /v1/features/highway or /v1/features/highway/A8
+
+#### OBJECTIVE: Finalize the URL structure including the versioning aspect.
 
 ### Principle #4 – Use CRUD
 
@@ -102,6 +116,8 @@ Also support HTTP communication methods:
     HEAD to return HTTP Headers with no payload
     OPTIONS to support W3C CORS
 
+#### OBJECTIVE: Agree on the semantics of HTTP methods on a particular (resource) URL
+
 ### Principle #5 – Don’t mix Singular and Plural
 
 [Follow the discussion on GitHub Issue 7 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/7)
@@ -121,6 +137,8 @@ E.g. using plural
     POST /v1/features/tiger_roads/
     PUT /v1/maps/green_spaces/area51
     GET /v1/tiles/water_ways/4326/0/0
+
+#### OBJECTIVE: Agree on the use of **singular** or **plural**
 
 ### Principle #6 – Put Complexity behind the ‘?’
 
@@ -145,6 +163,8 @@ should that return false or null (assuming the id of A8 is not A81)?
 
 Use of the query string to select resources is highly domain specific and must be described on a case to case basis.
 
+#### OBJECTIVE: Identify all the common elements that exist to the **right** of the **'?'**.
+
 ### Principle #7 – Error Handling
 
 [Follow the discussion on GitHub Issue 9 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/9)
@@ -165,6 +185,8 @@ information how to fix things + contact details
       "error_code": "...",
       "contact_details": "..."  
     }
+
+#### OBJECTIVE: Agree on the mechanism and the level of detail.
 
 ### Principle #8 – HTTP Status Codes
 
@@ -189,6 +211,8 @@ But what to do with the 'redirect' status codes? To be used with care: 301, 302,
 
 What about status code 100?
 
+#### OBJECTIVE: Agree on the semantics of HTTP status codes and their use.
+
 ### Principle #9 – Use of HTTP Header
 
 [Follow the discussion on GitHub Issue 11 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/11)
@@ -200,6 +224,8 @@ Keep in mind that not all JS-API support adding “stuff” into the HTTP reques
 For Web-Applications use of “non-default” headers has performance pushback for cross-domain requests
 
     e.g. HTTP Authorization header on a cross-domain request causes execution of CORS (W3C Recommendation) => Pre-flight request…
+
+#### OBJECTIVE: Agree upon which information is to be carried by HTTP headers.
 
 ### Principle #10 - Pagination
 
@@ -216,6 +242,8 @@ As an alternative to application processing the response, you should try to use 
     – Use HTTP Response Header to provide URLs for fetching the next / previous page
     
     – This approach is application neutral and should be provided by the API as the default
+
+#### OBJECTIVE: Agree on a common approach to be used.
 
 ### Principle #11 – Partial Responses
 
@@ -237,6 +265,8 @@ Advantage of option 2: It can be combined with other search options
 
     /v1/features/highways?id=A8&fields=name,geometry
 
+#### OBJECTIVE: Agree on a common approach to be used.
+
 ### Principle #12 – Not Accessing Resources
 
 [Follow the discussion on GitHub Issue 14 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/14)
@@ -249,6 +279,8 @@ Example to transform feature using different CRS
 
     /v1/transform/features/highway/A8?
     fromCRS=4326&toCRS=WGS84
+
+#### OBJECTIVE: Identify the **verbs** used across OGC domains.
 
 ### Principle #13 – Metadata
 
@@ -269,6 +301,8 @@ Starting with the next level, use URL path structures used for accessing resourc
     
 Allow ‘?’ operator to send selection queries (specify a search or filter option).
 
+#### OBJECTIVE: Agree on the mechanism or conclude on an alternative approach.
+
 ### Principle #14 – Security
 
 [Follow the discussion on GitHub Issue 16 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/16)
@@ -278,11 +312,15 @@ Host your API on HTTPS.
 . Require OAuth2 Bearer Tokens to control access
 . Use OpenID Connect to fetch use claims
 
+#### OBJECTIVE: Complete this principle based on your requirements.
+
 ### Principle #15 – API Description
 
 [Follow the discussion on GitHub Issue 17 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/17)
 
 Describing the API in OpenAPI has value to the developer.
+
+#### OBJECTIVE: Agree on using OpenAPI (plus version) to describe the Web API.
 
 ### Principle #16 - Content-Type Negotiation
 
@@ -292,6 +330,8 @@ Use HTTP request header 'Content-Type' to request the response in a particular c
 
 Use [IANA Media Types](https://www.iana.org/assignments/media-types/media-types.xhtml) whenever possible. 
 
+#### OBJECTIVE: If using own content-types, have then register at IANA to ensure interoperability.
+
 ### Principle 17 - Use Well-Known URIs
 
 [Follow the discussion on GitHub Issue 19 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/19)
@@ -300,9 +340,18 @@ IANA and other standardization organizations have defined so called well known U
 
 E.g. [Well Known URIs](https://www.iana.org/assignments/well-known-uris/well-known-uris.xhtml)
 
+#### OBJECTIVE: Identify if set of Well-Known URIs is complete (sufficient).
+
 ### Principle 18 - Good APIs are testable at Design Phase already
 
 [Follow the discussion on GitHub Issue 20 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/20)
 
 Any OGC Web API developed according to the developed guidelines can be tested at design phase already by validating compliance with the developed design principles. Possible results when assessing a principle could be (i) "the designed API is conformant with  principle #x", or (ii) "the desinged API is **not** conformant with principle #x. Reason: **...**"
 
+#### OBJECTIVE: Test the Design Principles above by asserting your Web API and report compliance / divergence to the OGC Architecture DWG or OWS Common SWG.
+
+### Principle 100 - Miscelleanous
+
+[Follow the discussion on GitHub Issue 100 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/100)
+
+Please report any missing priciple.
