@@ -1,2 +1,0 @@
-== Scope
-This document provides guidance on the creation of RESTful OpenAPI-based services and standards.
