@@ -117,7 +117,7 @@ Testbed 12 defined over 20 open geospatial Resource Types (below). Geospatial En
 ### Principle #3b – Keep the Base URL Simple
 
 [Follow the discussion on GitHub Issue 5 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/5) and
-[Follow the discussion on GitHub Issue 19 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/19
+[Follow the discussion on GitHub Issue 19 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/19)
 
 Never release an API without versioning information
 
