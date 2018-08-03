@@ -6,29 +6,36 @@ Latest published version:
  https://github.com/opengeospatial/OGC-Web-API-Guidelines/[*HTML*] 
  https://github.com/opengeospatial/OGC-Web-API-Guidelines.pdf[*PDF*]
 
-## Purpose
+## Background
+The OGC has discussed new approches beyond the pure service oriented architecture (SOA) used in reveral successful services in the past and homogenized by OWS Common. The discussions suggested the convenence of a Resource Oriented Archtechture (ROA) that should focus on the concept of "resource" and the development of APIs on the web (Web APIs). In the past several of these discussions were around REST RESTful and hypermedia. After 10 years of discussions, the recommendation is to move on use the emerging Web API and take advantage of the concept of "resource" and ROA and avoid the term REST (even if some of the principles here are clearely inspired by REST and we are using Testbed 12 results about that). 
 
-The implementation of Web APIs that allow the management of geospatial information should be possible by anyone familiar with the Web APIs designed for main stream IT. However, when designing a Web API by multiple domain experts, and not only by one team, and when trying to address multi purpose usage, it becomes challenging to ensure a common design pattern among all teams. 
+**Important note: This document is not addressing REST or RESTful but the broader concept or ROA Web APIs. the fact that a principle is not pure REST should not be an argument agaist a principle.**
 
-To ensure that (i) Web API design across all different domains of expertise is coherent and (ii) the maximum from main stream IT design pattern is reused, the OGC Architecture Board (OAB) has created this first set of guidelines. We have shared it with you to inspire additional discussion and refinement within and among your teams, and contribute our learnings and suggestions to the tech community at large.
-
-With some of the desing patterns published here, you can simply agree or disagree but. But for others, we require to conclude a particular way of doing things. For example, Design Principle #4 - CRUD requires that all different domain experts in the OGC agree to a common semantics what the effect of a particular method is when applied to a URI.
-
-## Usage
-
-Each principle has a corresponding Issue on the GitHub site.  Please use these Issues to discuss changes, corrections, and enhancements to the principles.
-
-Once the discussions imply to conclude on a stable outcome, the OGC Architecture Board would like to consider packaging the design principles as OGC Web API Design Guidelines.
-
-Each Design Principle has a Common Objective that we like to conclude on. Please focus your feedback towards this objective.
-
-## Design Principles
+## Starting point
 
 [Follow the discussion on GitHub Issue 2 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/2)
 
-The Design Principles listed here are taken from a presentation [OGC Web API Design Principles](https://portal.opengeospatial.org/files/?artifact_id=78344) (requires OGC portal login) given during the OGC TC meetings in Orleans and Fort Collins. The presentation summerizes a collection of the Web API design principles used today by major players in main stream IT business. The purpose of the presentation is to ensure that the "common part of an API" is designed such that it can be re-used and a adopted easily. However, the presentation is not perfect in the sense that it might be incomplete and that there is room left for a good consensus discussion.
+The starting point of the Design Principles listed here was taken from a presentation [OGC Web API Design Principles](https://portal.opengeospatial.org/files/?artifact_id=78344) (requires OGC portal login) given during the OGC TC meetings in Orleans and Fort Collins. The presentation summerizes a collection of the Web API design principles used today by major players in main stream IT business. The purpose of the presentation is to ensure that the "common part of an API" is designed such that it can be re-used and a adopted easily. However, the initial presentation was not perfect in the sense that it might be incomplete and that there is room left for a good consensus discussion.
 
-The original author of the presentation has agreed to make the content available in this open Github repo for the purpose of creating a starting point in discussion and deriving a set of guidelines that could eventually be used to test OGC Web API Implementation Standards for conformance.
+The original author of the presentation (Andreas Matheus), in collaboration with Charles Heazel, agreed to make the content available in this open Github repo for the purpose of creating a starting point in discussion and deriving a set of guidelines that could eventually be used to test OGC Web API Implementation Standards for conformance.
+
+## Purpose and process
+
+The implementation of Web APIs that allow the management of geospatial information should be possible by anyone familiar with the Web APIs designed for main stream IT. However, when designing a Web API by multiple domain experts, and not only by one team, and when trying to address multi purpose usage, it becomes challenging to ensure a common design pattern among all teams. 
+
+To ensure that (i) Web API design across all different domains of expertise is coherent and (ii) the maximum from main stream IT design pattern is reused, the OGC Architecture Board (OAB) requested the elaboration of these guidelines. This process is done under the Architechture DWG with the colaboration of the OWS Common. For the moment this is a living document to inspire additional discussion and refinement within and among DWG and SWG teams, and contribute our learnings and suggestions to the technological community at large. The final aim is to reach consensus and converge in a document that the OGC can approve (possibly a white paper). 
+
+With some of the desing patterns/principles published here, you can simply agree or disagree. For others, we require to select and conclude a particular way of doing things. For example, Design Principle #4 - CRUD requires that all different domain experts in the OGC agree to a common semantics what the effect of a particular method is when applied to a URI.
+
+## Next steps
+
+For the moment you should consider this to be a living, evolving document. Each principle in this document has a corresponding Issue on the GitHub site. Please use these Issues to discuss changes, corrections, and enhancements to the principles. 
+
+Each Design Principle has a Common Objective that we like to conclude on. Please focus your feedback towards this objective. Once the discussions about a principle concludes on a stable outcome the issue will be closed and the principle frosen.
+
+In the end the Architecture DWG would like to consider packaging the design principles as OGC Web API Design Guidelines White Paper. that will serve as a guidance the development of current and future OWS web services that adopt the Web API approach.
+
+## Design Principles
 
 ### Why OGC API Design Principles 
 
@@ -40,9 +47,9 @@ The following is a set of common design principals for developing any Web API.
 
 - But still, there are some aspects that would need to be agreed upon to ensure seamless APIs for different thematic topics in OGC.
 
-- In particular avoid that APIs are fundamentally different to access and manage different kinds of geospatial assets such as Features, Maps, Tiles, Coverages, Observations, Processes, etc.
+- In particular avoid that APIs are fundamentally different to access and manage different kinds of geospatial resources such as Features, Maps, Tiles, Coverages, Observations, Processes, etc.
     
-Please follow the issues created for a discussion to observe the idea of the proposed OGC Web API design principles.
+Please follow the issues created for a discussion to observe the idea of the proposed OGC Web API design principles.  Please use these Issues to discuss changes, corrections, and enhancements to the principles.
 
 **Important note: You may not and must not entirely agree with the presented principles. Important is to share your agreement or disagreement by contributing to an issue!**
 
