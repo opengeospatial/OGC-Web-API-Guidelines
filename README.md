@@ -82,9 +82,42 @@ API design should not begin with technical documentation, but should rather orig
 
 #### OBJECTIVE: Ensure Web API design review in early stage. But how?
 
-### Principle #3 – Keep the Base URL Simple
+### Principle #3a - Use Well-Known Resource Types
 
-[Follow the discussion on GitHub Issue 5 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/5)
+[Follow the discussion on GitHub Issue 18 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/18)
+
+Identify your resources (resource types)
+
+Testbed 12 defined over 20 open geospatial Resource Types (below). Geospatial Enterprises should use these well-known definitions their APIs.
+
+| Resource | Definition
+| -- | -- 
+| Capabilities | The complete service metadata document.
+| Tile | A rectangular pictorial representation of geographic data, often part of a set of such elements, covering a spatially contiguous extent and sharing similar information content and graphical styling, which can be uniquely defined by a pair of indices for the column and row along with an identifier for the tile matrix.
+| FeatureInfo | Insert definition here from Wiki when thereâs time.
+| Schema | The complete application schema offered by the server.
+| Feature Type | A feature type (i.e. a named collection of features with the same schema)
+| Feature | A feature (i.e. a member of a feature type)
+| Feature Type Property | A named property from the schema of a feature type.
+| Feature Property | A named property from the schema of a feature.
+| Query | A complex query resource.
+| Transaction | A complex transaction resource.
+| Process | Detailed process description of a single process.
+| Process Collection | List of processes available.
+| JobCollection | List of jobs of a process.
+| Job | Representation of a job (execution of a process) containing status information.
+| Process Output Data | Resource containing the different process outputs inline or as reference.
+| Coverage | Full coverage in the format negotiated by the client and server through the proper HTTP Headers (e.g. Accept)
+| Coverage Description | Full metadata regarding one specific coverage in negotiated format.
+| Coverage Subset | A coverage derived on the fly from a subset operation applied to a persistent coverage. *The subset of a coverage is still a coverage.
+| Coverage Range | A coverage derived on the fly from a range subsetting operation applied to a persistent coverage *The range subset of a coverage is still a coverage.
+
+#### OBJECTIVE: Know the types or resources you have in preparation for defining a URL structure.
+
+### Principle #3b – Keep the Base URL Simple
+
+[Follow the discussion on GitHub Issue 5 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/5) and
+[Follow the discussion on GitHub Issue 19 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/19
 
 Never release an API without versioning information
 
@@ -103,6 +136,8 @@ Use **nouns** not verbs to build the path to resources
 Use HTTP methods as verbs
 
     GET /v1/features/highway or PUT /v1/features/highway/A8
+    
+Great Web APIs look like they were designed by a single team. The most obvious properties of an API are the access paths and the URL templates which define them. Therefore, OGC conventions for the construction of access path templates are essential. Some of these templates are emerging though the Web Feature Service 3.0 efforts. They should be captured, formalized, and provided for re-use.
 
 #### OBJECTIVE: Finalize the URL structure including the versioning aspect.
 
@@ -347,7 +382,7 @@ Use [IANA Media Types](https://www.iana.org/assignments/media-types/media-types.
 
 ### Principle 17 - Use Well-Known URIs
 
-[Follow the discussion on GitHub Issue 19 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/19)
+[Follow the discussion on GitHub Issue 27 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/27)
 
 IANA and other standardization organizations have defined so called well known URLs for different purposes.
 
@@ -360,6 +395,8 @@ E.g. [Well Known URIs](https://www.iana.org/assignments/well-known-uris/well-kno
 [Follow the discussion on GitHub Issue 20 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/20)
 
 Any OGC Web API developed according to the developed guidelines can be tested at design phase already by validating compliance with the developed design principles. Possible results when assessing a principle could be (i) "the designed API is conformant with  principle #x", or (ii) "the desinged API is **not** conformant with principle #x. Reason: **...**"
+
+Testbed 14 is developing a compliance test for WFS 3.0.  This compliance test starts with the OpenAPI (OAS) document for a WFS 3.0 service. It then traverses the OAD document looking for testable paths. This process requires that the service and OAS document comply with the conventions developed through the WFS 3.0 effort. These conventions will become refined and formalized over time.  An API which does not comply with these conventions will not be testable.  
 
 #### OBJECTIVE: Test the Design Principles above by asserting your Web API and report compliance / divergence to the OGC Architecture DWG or OWS Common SWG.
 
