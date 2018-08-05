@@ -51,7 +51,7 @@ The following is a set of common design principals for developing any Web API.
     
 Please follow the issues created for a discussion to observe the idea of the proposed OGC Web API design principles.  Please use these Issues to discuss changes, corrections, and enhancements to the principles.
 
-**Important note: You may not and must not entirely agree with the presented principles. Important is to share your agreement or disagreement by contributing to an issue!**
+**Important note: You may not and must not entirely agree with the presented principles. Important is to share your agreement or disagreement by contributing to an issue about the principle! Unfortunately issue numbers DOES NOT correspond to principle numbers. Relay on the issue title instead**
 
 ### Principle #1 – Don’t Reinvent
 
