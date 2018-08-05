@@ -400,6 +400,14 @@ Testbed 14 is developing a compliance test for WFS 3.0.  This compliance test st
 
 #### OBJECTIVE: Test the Design Principles above by asserting your Web API and report compliance / divergence to the OGC Architecture DWG or OWS Common SWG.
 
+### Principle 19 - Make use of geospatial relations
+
+[Follow the discussion on GitHub Issue 23 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/23)
+
+In many cases it is appropiate to use hypermedia and hyperlinks to explicitelly declare links among resources, BUT do not be ashame of making use of implicit geospatial relations. Georeference and co-location are intrinsically geospatial relations that make geospatial information unique. You can assume that both clients and services are geospatial aware and can make use of them. For example, given a cell (pixel) of a coverage, there is always a cell immediatelly to the north, another imediatelly to the south, east, and west. The same is true for 2D tiles. Make this relations explicity is possible but extremelly unefficient. A geospatial client (and server) should have this relations hardcoded and use them and there is no need to comunicate them. In some other cases explicit relations could be useful: it could be worth to state topological relations among polygons (e.g. contiguity) that otherwise could be time consuming to re-calculate.
+
+#### OBJECTIVE: Accept that implicit geospatial relations are as good as explicit hypermedia relations in geospatial web services
+
 ### Principle 100 - Miscelleanous
 
 [Follow the discussion on GitHub Issue 100 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/100)
