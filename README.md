@@ -388,6 +388,12 @@ IANA and other standardization organizations have defined so called well known U
 
 E.g. [Well Known URIs](https://www.iana.org/assignments/well-known-uris/well-known-uris.xhtml)
 
+OGC could should its own Well Known URIs, such as:
+  * /api (OpenAPI document describing the service)
+  * /conformance (profiles and conformance classes that the service conforms to)
+  * /collections (list of grups of resources that are in the service)
+  * /metadata (service metadata of the service)
+
 #### OBJECTIVE: Identify if set of Well-Known URIs is complete (sufficient).
 
 ### Principle 18 - Good APIs are testable at Design Phase already
