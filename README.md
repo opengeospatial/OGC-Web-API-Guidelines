@@ -380,13 +380,17 @@ Use [IANA Media Types](https://www.iana.org/assignments/media-types/media-types.
 
 #### OBJECTIVE: If using own content-types, have then register at IANA to ensure interoperability.
 
-### Principle 17 - Use Well-Known URIs
+### Principle 17a - Use IANA well-known identifiers
 
 [Follow the discussion on GitHub Issue 27 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/27)
 
-IANA and other standardization organizations have defined so called well known URLs for different purposes.
+IANA and other standardization organizations have defined so called well known identifies for different purposes (e.g.  from https://www.iana.org/protocols, https://www.iana.org/assignments/well-known-uris/well-known-uris.xhtml). Some security related formats can be extracted form there (e.g. mime-type for a GeoXACML policy?: https://www.iana.org/assignments/media-types/media-types.xhtml application/geoxacml+xml)
 
-E.g. [Well Known URIs](https://www.iana.org/assignments/well-known-uris/well-known-uris.xhtml)
+#### OBJECTIVE: Identify if set of Well-Known URIs is complete (sufficient).
+
+### Principle 17b - Use OGC services reserved URIs
+
+[Follow the discussion on GitHub Issue 27 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/27)
 
 OGC could should its own Well Known URIs, such as:
   * /api (OpenAPI document describing the service)
@@ -394,7 +398,7 @@ OGC could should its own Well Known URIs, such as:
   * /collections (list of grups of resources that are in the service)
   * /metadata (service metadata of the service)
 
-#### OBJECTIVE: Identify if set of Well-Known URIs is complete (sufficient).
+#### OBJECTIVE: Identify if set of URI templates that every server should use and respond with the same encoding
 
 ### Principle 18 - Good APIs are testable at Design Phase already
 
