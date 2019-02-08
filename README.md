@@ -3,13 +3,13 @@
 ## A Comprehensive Set of Guidelines for developing OGC Web APIs 
 
 Latest published version: 
- https://github.com/opengeospatial/OGC-Web-API-Guidelines/[*HTML*] 
- https://github.com/opengeospatial/OGC-Web-API-Guidelines.pdf[*PDF*]
+- https://github.com/opengeospatial/OGC-Web-API-Guidelines/[*HTML*] 
+- https://github.com/opengeospatial/OGC-Web-API-Guidelines.pdf[*PDF*]
 
 ## Background
-The OGC has discussed new approches beyond the pure service oriented architecture (SOA) used in reveral successful services in the past and homogenized by OWS Common. The discussions suggested the convenence of a Resource Oriented Archtechture (ROA) that should focus on the concept of "resource" and the development of APIs on the web (Web APIs). In the past several of these discussions were around REST RESTful and hypermedia. After 10 years of discussions, the recommendation is to move on use the emerging Web API and take advantage of the concept of "resource" and ROA and avoid the term REST (even if some of the principles here are clearely inspired by REST and we are using Testbed 12 results about that). 
+The OGC has discussed new approches beyond the pure service oriented architecture (SOA) used in several successful services in the past and homogenized by OWS Common. The discussions suggested the convenence of a Resource Oriented Archtechture (ROA) that should focus on the concept of "resource" and the development of APIs on the web (Web APIs). In the past several of these discussions were around REST RESTful and hypermedia. After 10 years of discussions, the recommendation is to move on use the emerging Web API and take advantage of the concept of "resource" and ROA and avoid the term REST (even if some of the principles here are clearly inspired by REST and we are using Testbed 12 results about that). 
 
-**Important note: This document is not addressing REST or RESTful but the broader concept or ROA Web APIs. the fact that a principle is not pure REST should not be an argument agaist a principle.**
+**Important note: This document is not addressing REST or RESTful but the broader concept or ROA Web APIs. The fact that a principle is not pure REST should not be an argument against a principle.**
 
 ## Starting point
 
@@ -17,7 +17,7 @@ The OGC has discussed new approches beyond the pure service oriented architectur
 
 The starting point of the Design Principles listed here was taken from a presentation [OGC Web API Design Principles](https://portal.opengeospatial.org/files/?artifact_id=78344) (requires OGC portal login) given during the OGC TC meetings in Orleans and Fort Collins. The presentation summerizes a collection of the Web API design principles used today by major players in main stream IT business. The purpose of the presentation is to ensure that the "common part of an API" is designed such that it can be re-used and a adopted easily. However, the initial presentation was not perfect in the sense that it might be incomplete and that there is room left for a good consensus discussion.
 
-The original author of the presentation (Andreas Matheus), in collaboration with Charles Heazel, agreed to make the content available in this open Github repo for the purpose of creating a starting point in discussion and deriving a set of guidelines that could eventually be used to test OGC Web API Implementation Standards for conformance.
+The original author of the presentation (Andreas Matheus), in collaboration with Charles Heazel, agreed to make the content available in this open GitHub repo for the purpose of creating a starting point in discussion and deriving a set of guidelines that could eventually be used to test OGC Web API Implementation Standards for conformance.
 
 ## Purpose and process
 
@@ -25,13 +25,13 @@ The implementation of Web APIs that allow the management of geospatial informati
 
 To ensure that (i) Web API design across all different domains of expertise is coherent and (ii) the maximum from main stream IT design pattern is reused, the OGC Architecture Board (OAB) requested the elaboration of these guidelines. This process is done under the Architechture DWG with the colaboration of the OWS Common. For the moment this is a living document to inspire additional discussion and refinement within and among DWG and SWG teams, and contribute our learnings and suggestions to the technological community at large. The final aim is to reach consensus and converge in a document that the OGC can approve (possibly a white paper). 
 
-With some of the desing patterns/principles published here, you can simply agree or disagree. For others, we require to select and conclude a particular way of doing things. For example, Design Principle #4 - CRUD requires that all different domain experts in the OGC agree to a common semantics what the effect of a particular method is when applied to a URI.
+With some of the design patterns/principles published here, you can simply agree or disagree. For others, we require to select and conclude a particular way of doing things. For example, Design Principle #4 - CRUD requires that all different domain experts in the OGC agree to a common semantics what the effect of a particular method is when applied to a URI.
 
 ## Next steps
 
 For the moment you should consider this to be a living, evolving document. Each principle in this document has a corresponding Issue on the GitHub site. Please use these Issues to discuss changes, corrections, and enhancements to the principles. 
 
-Each Design Principle has a Common Objective that we like to conclude on. Please focus your feedback towards this objective. Once the discussions about a principle concludes on a stable outcome the issue will be closed and the principle frosen.
+Each Design Principle has a Common Objective that we like to conclude on. Please focus your feedback towards this objective. Once the discussions about a principle concludes on a stable outcome the issue will be closed and the principle frozen.
 
 In the end the Architecture DWG would like to consider packaging the design principles as OGC Web API Design Guidelines White Paper. that will serve as a guidance the development of current and future OWS web services that adopt the Web API approach.
 
@@ -94,7 +94,7 @@ Testbed 12 defined over 20 open geospatial Resource Types (below). Geospatial En
 | -- | -- 
 | Capabilities | The complete service metadata document.
 | Tile | A rectangular pictorial representation of geographic data, often part of a set of such elements, covering a spatially contiguous extent and sharing similar information content and graphical styling, which can be uniquely defined by a pair of indices for the column and row along with an identifier for the tile matrix.
-| FeatureInfo | Insert definition here from Wiki when thereâs time.
+| FeatureInfo | Insert definition here from Wiki when there's time.
 | Schema | The complete application schema offered by the server.
 | Feature Type | A feature type (i.e. a named collection of features with the same schema)
 | Feature | A feature (i.e. a member of a feature type)
@@ -191,7 +191,7 @@ Examples of plural:
 
 [Follow the discussion on GitHub Issue 8 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/8)
 
-This where the fun begins. The radical idea behind the '?' concept is that everything **left** of the **'?'** (the path design) should be identical regardless of the kind of resource and that everything **right** of the **'?'** may introduce domain specific aspects.
+This is where the fun begins. The radical idea behind the '?' concept is that everything **left** of the **'?'** (the path design) should be identical regardless of the kind of resource and that everything **right** of the **'?'** may introduce domain specific aspects.
 
 The "query-string" parameters should be used to select a resource(s) based on the(ir) characteristics - aka filter
 
@@ -404,7 +404,7 @@ OGC could should its own Well Known URIs, such as:
 
 [Follow the discussion on GitHub Issue 20 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/20)
 
-Any OGC Web API developed according to the developed guidelines can be tested at design phase already by validating compliance with the developed design principles. Possible results when assessing a principle could be (i) "the designed API is conformant with  principle #x", or (ii) "the desinged API is **not** conformant with principle #x. Reason: **...**"
+Any OGC Web API developed according to the developed guidelines can be tested at design phase already by validating compliance with the developed design principles. Possible results when assessing a principle could be (i) "the designed API is conformant with  principle #x", or (ii) "the designed API is **not** conformant with principle #x. Reason: **...**"
 
 Testbed 14 is developing a compliance test for WFS 3.0.  This compliance test starts with the OpenAPI (OAS) document for a WFS 3.0 service. It then traverses the OAD document looking for testable paths. This process requires that the service and OAS document comply with the conventions developed through the WFS 3.0 effort. These conventions will become refined and formalized over time.  An API which does not comply with these conventions will not be testable.  
 
@@ -414,7 +414,7 @@ Testbed 14 is developing a compliance test for WFS 3.0.  This compliance test st
 
 [Follow the discussion on GitHub Issue 23 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/23)
 
-In many cases it is appropiate to use hypermedia and hyperlinks to explicitelly declare links among resources, BUT do not be ashame of making use of implicit geospatial relations. Georeference and co-location are intrinsically geospatial relations that make geospatial information unique. You can assume that both clients and services are geospatial aware and can make use of them. For example, given a cell (pixel) of a coverage, there is always a cell immediatelly to the north, another imediatelly to the south, east, and west. The same is true for 2D tiles. Make this relations explicity is possible but extremelly unefficient. A geospatial client (and server) should have this relations hardcoded and use them and there is no need to comunicate them. In some other cases explicit relations could be useful: it could be worth to state topological relations among polygons (e.g. contiguity) that otherwise could be time consuming to re-calculate.
+In many cases it is appropiate to use hypermedia and hyperlinks to explicitelly declare links among resources, BUT do not be ashame of making use of implicit geospatial relations. Georeference and co-location are intrinsically geospatial relations that make geospatial information unique. You can assume that both clients and services are geospatial aware and can make use of them. For example, given a cell (pixel) of a coverage, there is always a cell immediatelly to the north, another immediately to the south, east, and west. The same is true for 2D tiles. Making these relations explicity is possible but extremely unefficient. A geospatial client (and server) should have this relations hardcoded and use them and there is no need to communicate them. In some other cases explicit relations could be useful: it could be worth to state topological relations among polygons (e.g. contiguity) that otherwise could be time consuming to re-calculate.
 
 #### OBJECTIVE: Accept that implicit geospatial relations are as good as explicit hypermedia relations in geospatial web services
 
