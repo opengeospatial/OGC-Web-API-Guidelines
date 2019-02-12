@@ -194,6 +194,8 @@ Define all HTTP Headers that your API supports.
 
 Use HTTP Headers as intended by RFC 2616, but design your API to allow overwriting of HTTP Headers based on URL query parameters.
 
+For support of caching consider to support entity tags and the associated headers. However, their use might be in conflict when implementing security requirements. For these cases, you should explicitly name those headers that must be overwritten to avoid caching.
+
 ### Principle #10 - Content Negotiation
 
 [Follow the discussion on GitHub Issue 18 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/18)
@@ -303,7 +305,21 @@ For example is it possible to differenciate between XACML or GeoXACML policies. 
 
 In many cases it is appropiate to use typed relation to explicitelly declare links among resources. A special case are topological spatial relations between resources (e.g., contains, within, etc.) which are easy to derive with a GIS, but not with Web clients unless the relations are explicitly represented. The relations may either be explicitly included in the resource representation or in Link headers in the HTTP response header (see RFC 5988).
 
-### Principle #18 - Good APIs are testable from the beginning
+### Principle #18 - Support W3C Cross-Origin Resource Sharing
+
+If your Web API is accessed by Web-applications executed in a Web Browser, support W3C CORS (https://www.w3.org/TR/cors/). This allows to overcome the security restrictions introduced by the Same-Origin Policy (https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy) applied by the Web Browser to JavaScript based applications when trying to access your Web API.
+
+In cross origin cases, as identified in W3C CORS, the HTTP request carries specific HTTP headers and it is expected by the Web Browser that associated HTTP response headers exist in the response. Otherwise the processing stops.
+
+### Principle #19 - Resource encodings
+
+The API should provide resource representations based on the expectations of the developers.
+
+You also have to decide whether or not the Web API should support a default encoding that every implementation has to support. You should recommend to support JSON and HTML as encodings for all resources. JSON is recommended as it is  a commonly used format that is simple to understand and well supported by tools and software libraries; HTML is recommended as it is the standard encoding for Web content.
+
+Still, the XML encoding should be supported as it is often required to meet specific security requirements. Also, many existing standards and OGC encodings are based on XML.
+
+### Principle #20 - Good APIs are testable from the beginning
 
 [Follow the discussion on GitHub Issue 20 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/20)
 
