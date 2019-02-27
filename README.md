@@ -24,11 +24,9 @@ To ensure that (i) Web API design across all different domains of expertise is c
 
 Even though functioning as a Policy Document, the use is more like a checklist to streamline the design and the review process in OAB and OGC Technical committee. The assessment from verifying the Web API design against the checklist should be submitted with the Web API draft standard to the OAB. It is possible to not follow all principles, but reasons for deviation should be given.
 
-For the moment you should consider this to be a living, evolving document. Each principle in this document has a corresponding Issue on the GitHub site. Please use these Issues to discuss changes, corrections, and enhancements to the principles. 
+For the moment you should consider this to be a living, evolving document. Please create or comment on existing Issues to discuss changes, corrections, and enhancements to the principles. 
 
 ## Starting point
-
-[Follow the discussion on GitHub Issue 2 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/2)
 
 The starting point of the Design Principles listed here was taken from a presentation [OGC Web API Design Principles](https://portal.opengeospatial.org/files/?artifact_id=78344) (requires OGC portal login) given during the OGC TC meetings in Orleans and Fort Collins. The presentation summerizes a collection of the Web API design principles used today by major players in main stream IT business. The purpose of the presentation is to ensure that the "common part of an API" is designed such that it can be re-used and a adopted easily. However, the initial presentation was not perfect in the sense that it might be incomplete and that there is room left for a good consensus discussion.
 
@@ -38,30 +36,21 @@ The original author of the presentation (Andreas Matheus), in collaboration with
 
 ### Principle #1 – Don’t Reinvent
 
-[Follow the discussion on GitHub Issue 3 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/3)
-
 For aspects and functional capabilities that are already solved in main-stream IT and meet geospatial community requirements, simply adopt these API elements.
 
 Focus instead on geo-centric and domain specific requirements to create new APIs or extend existing APIs. 
 
 ### Principle #2 – Keep It Simple and Intuitive
 
-[Follow the discussion on GitHub Issue 4 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/4)
-
 Make the developer of the API successful as quickly as possible!
 
 ### Principle #3 - Use Well-Known Resource Types
-
-[Follow the discussion on GitHub Issue 18 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/18)
 
 Identify your resource types and reuse existing definitions from the OGC Naming Authority resource type register (to be established). 
 
 Encodings of resource types should be associated with an IANA registered media type.
 
 ### Principle #4 – Construct consistent URIs
-
-[Follow the discussion on GitHub Issue 5 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/5) and
-[Follow the discussion on GitHub Issue 19 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/19)
 
 Great Web APIs look like they were designed by a single team. The most obvious properties of an API are the access paths and the URL templates which define them. Therefore, OGC conventions for the construction of access path templates are essential. Some of these templates are emerging though the Web Feature Service 3.0 efforts. Before creating a new URI scheme, you should follow and build on existing approaches in OGC. If creating your own URI scheme, please explain your URI pattern.
 
@@ -93,8 +82,6 @@ Note that it doesn’t matter if you use singular or plural for your nouns to bu
 
 ### Principle #5 – Use HTTP Methods consistent with RFC 2616
 
-[Follow the discussion on GitHub Issue 6 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/6)
-
 Include in your API design the use of all HTTP methods that operate on resources: **GET, POST, PUT, DELETE**
 
 Define the semantics carefully when a method is invoked on a particular URI addressing a resource. E.g.
@@ -113,8 +100,6 @@ Also consider support for other HTTP methods:
  * PATCH to update parts of an existing resource
 
 ### Principle #6 – Put Selection Criteria behind the ‘?’
-
-[Follow the discussion on GitHub Issue 8 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/8)
 
 The radical idea behind the '?' concept is that everything **left** of the **'?'** (the path design) identifies a resource and that everything **right** of the **'?'** may select specific representaion(s) of parts or the entire resource.
 
@@ -140,8 +125,6 @@ Use of the query string to select resources is highly resource specific and must
 
 ### Principle #7 – Error Handling and use of HTTP Status Codes
 
-[Follow the discussion on GitHub Issue 9 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/9)
-
 *Note: Error Codes are the developers insight into your API. So be precise and as detailed as possible. Error handling is often one of the biggest complaints when using an API.*
 
 Associate each error situation of your API with the appropriate HTTP status code (see also Principle #8).
@@ -160,8 +143,6 @@ information on how to fix things + contact details
     }
 
 ### Principle #8 – Use of HTTP Status Codes
-
-[Follow the discussion on GitHub Issue 10 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/10)
 
 More then 70 HTTP status codes exist (summary in RFC 7231).  You should reduce the use in your API to the most important ones. For example:
 
@@ -188,8 +169,6 @@ Be explicit which 30x statucs code your API supports. For any supported 30x foll
 
 ### Principle #9 – Use of HTTP Header
 
-[Follow the discussion on GitHub Issue 11 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/11)
-
 Define all HTTP Headers that your API supports.
 
 Use HTTP Headers as intended by RFC 2616, but design your API to allow overwriting of HTTP Headers based on URL query parameters.
@@ -197,8 +176,6 @@ Use HTTP Headers as intended by RFC 2616, but design your API to allow overwriti
 For support of caching consider to support entity tags and the associated headers. However, their use might be in conflict when implementing security requirements. For these cases, you should explicitly name those headers that must be overwritten to avoid caching.
 
 ### Principle #10 - Content Negotiation
-
-[Follow the discussion on GitHub Issue 18 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/18)
 
 Content negotiation is an important, but special case of Principle #9. 
 
@@ -219,8 +196,6 @@ An example for content negotiation based on HTTP headers and with query paramete
 
 ### Principle #11 - Pagination
 
-[Follow the discussion on GitHub Issue 12 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/12)
-
 APIs for large data collections should support pagination.
 
 For example, use **limit** and **offset** as "query-string" parameters.
@@ -235,8 +210,6 @@ As a supplement consider support for Web Linking (RFC 5988)
 – This approach is application neutral and should be provided by the API as the default
 
 ### Principle #12 – Processing Resources
-
-[Follow the discussion on GitHub Issue 14 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/14)
 
 Use **verbs** to offer **operations** on resources, for example:
 
@@ -254,8 +227,6 @@ APIs may decide to offer processing resources as separate operations to support 
 
 ### Principle #13 – Support Metadata
 
-[Follow the discussion on GitHub Issue 15 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/15)
-
 This part of the API helps the developer to understand how to use data or processing resources. Two approaches exist how to achieve this:
 
 (1) Start the URL path with 'metadata' to indicate that subsequent path identifies a resource for which the metadata is returned.
@@ -272,8 +243,6 @@ You may use of the ‘?’ operator to send selection criteria (see Principle #6
 
 ### Principle #14 – Consider your Security needs
 
-[Follow the discussion on GitHub Issue 16 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/16)
-
 Try to follow common practices for security in Web APIs, for example:
 
 - Host your API on HTTPS.
@@ -283,13 +252,9 @@ Try to follow common practices for security in Web APIs, for example:
 
 ### Principle #15 – API Description
 
-[Follow the discussion on GitHub Issue 17 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/17)
-
 Describing the API in human and macine readable form has value to the developer. Currently OpenAPI version 3 is common practice.
 
 ### Principle #16 - Use IANA well-known identifiers
-
-[Follow the discussion on GitHub Issue 27 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/27)
 
 IANA and other standardization organizations have defined so called well known identifiers for different purposes. For example:
 
@@ -300,8 +265,6 @@ IANA and other standardization organizations have defined so called well known i
 For example is it possible to differenciate between XACML or GeoXACML policies. XACML policies would be returned with the 'application/xacml+xml' media type and GeoXACML policies with media type 'application/geoxacml+xml'
 
 ### Principle #17 - Use explicit geospatial relations
-
-[Follow the discussion on GitHub Issue 23 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/23)
 
 In many cases it is appropiate to use typed relation to explicitelly declare links among resources. A special case are topological spatial relations between resources (e.g., contains, within, etc.) which are easy to derive with a GIS, but not with Web clients unless the relations are explicitly represented. The relations may either be explicitly included in the resource representation or in Link headers in the HTTP response header (see RFC 5988).
 
@@ -320,7 +283,5 @@ You also have to decide whether or not the Web API should support a default enco
 Still, the XML encoding should be supported as it is often required to meet specific security requirements. Also, many existing standards and OGC encodings are based on XML.
 
 ### Principle #20 - Good APIs are testable from the beginning
-
-[Follow the discussion on GitHub Issue 20 ](https://github.com/opengeospatial/OGC-Web-API-Guidelines/issues/20)
 
 Any OGC Web API developed according to these guidelines can be tested at design phase already. Considering all design principles including the identification of resource types, the effect of applying HTTP methods to them, the potential HTTP status codes, etc. provides the basis for documenting and implementing compliance tests in parallel to the API design.
