@@ -285,3 +285,22 @@ Still, the XML encoding should be supported as it is often required to meet spec
 ### Principle #20 - Good APIs are testable from the beginning
 
 Any OGC Web API developed according to these guidelines can be tested at design phase already. Considering all design principles including the identification of resource types, the effect of applying HTTP methods to them, the potential HTTP status codes, etc. provides the basis for documenting and implementing compliance tests in parallel to the API design.
+
+### Principle #21 - Specify wether operations are safe and/or idempotent
+For each operation one has to specify whether it has to be *safe* and/or *idempotent*. This is important, because clients and middelware rely on this.
+
+> **Safe (read-only)**
+>
+> Safe (read-only) in this case means that the semantics has been defined as read-only. This is important, because clients and middelware like to use caching.
+
+> **Idempotent**
+>
+> Idempotent means that multiple, identical requests have the same effect as one request.
+
+|Operation|Safe|Idempotent|
+|-|-|-|
+|`POST`|No|No|
+|`GET`, `OPTIONS`, `HEAD`|Yes|Yes|
+|`PUT`|No|Yes|
+|`PATCH`|No|Optional|
+|`DELETE`|No|Yes|
