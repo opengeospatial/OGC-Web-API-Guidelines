@@ -82,22 +82,23 @@ Note that it doesn’t matter if you use singular or plural for your nouns to bu
 
 ### Principle #5 – Use HTTP Methods consistent with RFC 2616
 
-Include in your API design the use of all HTTP methods that operate on resources: **GET, POST, PUT, DELETE**
+Include in your API design the use of all HTTP methods that operate on resources: **POST, GET, PUT, ,PATCH, DELETE**
 
-Define the semantics carefully when a method is invoked on a particular URI addressing a resource. E.g.
+The most important prinicple of REST is the seperation of the API in logical resources (*things*). The resources describe the information of the *thing*. These resources are manipulated using HTTP-requests and HTTP-operations. Each operation (`GET`, `POST`, `PUT`, `PATCH`, `DELETE`) has a specific meaning.
+> HTTP also defines operations, e.g. `HEAD`, `TRACE`, `OPTIONS` en `CONNECT`. In the context of REST, these operations are hardly ever used and have been excluded from the rest of the overview below.
 
-| Resource  | POST  | GET  | PUT | DELETE 
-| -- | -- | -- | -- | -- 
-| ../collections/highways/items | create a new highway | list all highways | bulk update of highways | delete all highways  
-| .../collections/highways/items/A8 | Error! | show A8 | If exists: Update A8 else: Create A8 | delete highway A8
+|Operation|CRUD|Description|
+|-|-|-|
+|`POST`|Create|Create resources that represent collections (i.e. `POST` adds a resource to a collection).|
+|`GET`|Read|Retrieve a resource from the server. Data is only retrieved and not modified.|
+|`PUT`|Update|Replace a specific resource. Is also used as a *create* " if the resource at the indicated identifier/URI does not exist yet.|
+|`PATCH`|Update|Partially modify an existing resource. The request contains the data that have to be changed and the operations that modify the resource and in case JSON is the encoding format in the designated JSON merge patch format (RFC 7386).|
+|`DELETE`|Delete|Remove the specific resource.|
 
-Do not force all semantics in just HTTP GET!
-
-Also consider support for other HTTP methods:
+Also one can consider support for other HTTP methods:
 
  * HEAD to return HTTP Headers with no payload
  * OPTIONS to support W3C CORS
- * PATCH to update parts of an existing resource
 
 ### Principle #6 – Put Selection Criteria behind the ‘?’
 
@@ -285,22 +286,3 @@ Still, the XML encoding should be supported as it is often required to meet spec
 ### Principle #20 - Good APIs are testable from the beginning
 
 Any OGC Web API developed according to these guidelines can be tested at design phase already. Considering all design principles including the identification of resource types, the effect of applying HTTP methods to them, the potential HTTP status codes, etc. provides the basis for documenting and implementing compliance tests in parallel to the API design.
-
-### Principle #21 - Specify wether operations are safe and/or idempotent
-For each operation one has to specify whether it has to be *safe* and/or *idempotent*. This is important, because clients and middelware rely on this.
-
-> **Safe (read-only)**
->
-> Safe (read-only) in this case means that the semantics has been defined as read-only. This is important, because clients and middelware like to use caching.
-
-> **Idempotent**
->
-> Idempotent means that multiple, identical requests have the same effect as one request.
-
-|Operation|Safe|Idempotent|
-|-|-|-|
-|`POST`|No|No|
-|`GET`, `OPTIONS`, `HEAD`|Yes|Yes|
-|`PUT`|No|Yes|
-|`PATCH`|No|Optional|
-|`DELETE`|No|Yes|
