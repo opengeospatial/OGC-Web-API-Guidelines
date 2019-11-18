@@ -193,6 +193,24 @@ An example for content negotiation based on HTTP headers and with query paramete
    accept: application/json
    => should return the response using the GML encoding
 
+#### Content negotiation for coordinate reference systems (CRS)
+Request and response may be based on another coordinate reference system. This applies the HTTP-mechanism for content negotiation. The CRS of the geometry in the request (request body) is specified using the header `Content-Crs`. Below are examples for four coordinate reference systems any other CRS can be supported in the same manner.
+
+|HTTP header|Value|Explanation|
+|-|-|-|
+|`Content-Crs`|EPSG:4326|WGS84, global|
+|`Content-Crs`|EPSG:3857|Web Mecator, global|
+|`Content-Crs`|EPSG:4258|ETRS89, European|
+|`Content-Crs`|EPSG:28992|RD/Amersfoort, Dutch|
+
+The preferred CRS for the geometry in the response (response body) is specified using the header `Accept-Crs`.  
+
+|HTTP header|Value|Explanation|
+|-|-|-|
+|`Accept-Crs`|EPSG:4326|WGS84, global|
+|`Accept-Crs`|EPSG:3857|Web Mercator, global|
+|`Accept-Crs`|EPSG:4258|ETRS89, European|
+|`Accept-Crs`|EPSG:28992|RD/Amersfoort, Dutch|
 
 ### Principle #11 - Pagination
 
@@ -285,22 +303,3 @@ Still, the XML encoding should be supported as it is often required to meet spec
 ### Principle #20 - Good APIs are testable from the beginning
 
 Any OGC Web API developed according to these guidelines can be tested at design phase already. Considering all design principles including the identification of resource types, the effect of applying HTTP methods to them, the potential HTTP status codes, etc. provides the basis for documenting and implementing compliance tests in parallel to the API design.
-
-### Principle #21 - Specify wether operations are safe and/or idempotent
-For each operation one has to specify whether it has to be *safe* and/or *idempotent*. This is important, because clients and middelware rely on this.
-
-> **Safe (read-only)**
->
-> Safe (read-only) in this case means that the semantics has been defined as read-only. This is important, because clients and middelware like to use caching.
-
-> **Idempotent**
->
-> Idempotent means that multiple, identical requests have the same effect as one request.
-
-|Operation|Safe|Idempotent|
-|-|-|-|
-|`POST`|No|No|
-|`GET`, `OPTIONS`, `HEAD`|Yes|Yes|
-|`PUT`|No|Yes|
-|`PATCH`|No|Optional|
-|`DELETE`|No|Yes|
