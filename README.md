@@ -264,9 +264,12 @@ IANA and other standardization organizations have defined so called well known i
 
 For example is it possible to differenciate between XACML or GeoXACML policies. XACML policies would be returned with the 'application/xacml+xml' media type and GeoXACML policies with media type 'application/geoxacml+xml'
 
-### Principle #17 - Use explicit geospatial relations
+### Principle #17 - Follow OGC Guidelines regarding geospatial elements
 
-In many cases it is appropiate to use typed relation to explicitelly declare links among resources. A special case are topological spatial relations between resources (e.g., contains, within, etc.) which are easy to derive with a GIS, but not with Web clients unless the relations are explicitly represented. The relations may either be explicitly included in the resource representation or in Link headers in the HTTP response header (see RFC 5988).
+* Provide SRSs with all coordinates.
+* Where possible, explicitly name coordinates instead of relying on coordinate order. When explicit naming is not possible, follow the OGC Axis Order Policy.
+* When needed, use WKT2 to describe SRSs.
+* Use explicit geospatial relations. In many cases it is appropriate to use typed relation to explicitly declare links among resources. A special case are topological spatial relations between resources (e.g., contains, within, etc.) which are easy to derive with a GIS, but not with Web clients unless the relations are explicitly represented. The relations may either be explicitly included in the resource representation or in Link headers in the HTTP response header (see RFC 5988).
 
 ### Principle #18 - Support W3C Cross-Origin Resource Sharing
 
