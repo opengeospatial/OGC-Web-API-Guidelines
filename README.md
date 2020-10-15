@@ -123,28 +123,9 @@ Another example for a query parameter could be `properties` (which can also be c
 
 Use of the query string to select resources is highly resource specific and must be described on a case by case basis.
 
-### Principle #7 – Error Handling and use of HTTP Status Codes
+### Principle #7 – Make Responses Clear
 
-*Note: Error Codes are the developers insight into your API. So be precise and as detailed as possible. Error handling is often one of the biggest complaints when using an API.*
-
-Associate each error situation of your API with the appropriate HTTP status code (see also Principle #8).
-
-However, you may also consider supporting a "switch off" that always returns a status code 200 plus additional (debug / insight) information in the HTTP response body
-
-    e.g. ?suppress_response_codes=true
-
-Return detailed human readable error no. + description +
-information on how to fix things + contact details
-
-    { "developer_message": "…",
-      "user_message": "...",
-      "error_code": "...",
-      "contact_details": "..."  
-    }
-
-### Principle #8 – Use of HTTP Status Codes
-
-More then 70 HTTP status codes exist (summary in RFC 7231).  You should reduce the use in your API to the most important ones. For example:
+Use HTTP Status Codes from RFC7231 to indicate the results of the request. Since more than 70 status codes exist, reduce the use in your API to the most important ones. For example:
 
 | Option Set #1 – Basic set |  Option Set #2 – Additional
 | -- | -- 
@@ -165,7 +146,15 @@ More then 70 HTTP status codes exist (summary in RFC 7231).  You should reduce t
 |  | - 429 - Too Many Requests
 | - 500 - Internal Server Error | - 503 - Service Unavailable 
 
-Be explicit which 30x statucs code your API supports. For any supported 30x follow the HTTP semantics.
+Response documents should reflect the status codes. 
+
+* 3XX responses indicate a redirect. Be explicit which 3XX status codes your API supports. For any supported 3XX codes, follow the HTTP semantics.
+* 4XX responses indicate that the client is in error so the response should indicate what is wrong with the request. Be as precise and as detailed as possible. Error handling is often one of the biggest complaints when using an API.
+* 5XX responses indicate that the server is in error so the response should include contact information. Since debugging information for server problems is not actionable by the client, it should be logged and not returned in the response document. Error Handling and use of HTTP Status Codes
+
+However, you may also consider supporting a "switch off" that always returns a status code 200 plus additional (debug / insight) information in the HTTP response body
+
+    e.g. ?suppress_response_codes=true
 
 ### Principle #9 – Use of HTTP Header
 
