@@ -132,6 +132,7 @@ Use HTTP Status Codes from RFC7231 to indicate the results of the request. Since
 | - 100 - Continue |
 | - 200 - OK | - 201 - Created 
 |  | - 204 - No Content
+|  | - 302 - Found
 |  | - 304 - Not Modified 
 | - 400 - Bad Request | - 401 Unauthorized  
 |  | - 403 - Forbidden 
