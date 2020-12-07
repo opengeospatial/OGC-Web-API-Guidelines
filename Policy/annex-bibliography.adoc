@@ -1,0 +1,7 @@
+[appendix]
+:appendix-caption: Annex
+[[Bibliography]]
+= Bibliography
+
+[[OGCDEF]]
+[1] OGC: OGC Definitions Server, http://www.opengis.net/def (2018).

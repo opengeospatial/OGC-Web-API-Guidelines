@@ -1,0 +1,9 @@
+== Conformance
+
+This policy defines a series of policy requirements for OGC API standards.
+
+Conformance with this policy shall be checked manually through review, or through automation where possible.
+
+A checklist is provided for each Standards Working Group (SWG) to document how it complies with the guidelines and if any exemptions to the guidelines apply.
+
+Completed checklists are to be reviewed by the OAB in order for candidate standards to be considered for Public Requests for Comment (RFC).
