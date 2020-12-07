@@ -178,9 +178,9 @@ For support of caching consider to support entity tags and the associated header
 
 Content negotiation is an important, but special case of Principle #9.
 
-Use HTTP request header like 'Accept' or 'Accept-Language' to request the response in a particular content type or language as defined in [RFC 2616](https://tools.ietf.org/html/rfc2616).
+Use HTTP request header like 'Accept' or 'Accept-Language' to request the response in a particular content type or language as defined in link:https://tools.ietf.org/html/rfc2616[RFC 2616].
 
-Use registered [IANA Media Types](https://www.iana.org/assignments/media-types/media-types.xhtml) whenever possible.
+Use registered link:https://www.iana.org/assignments/media-types/media-types.xhtml[IANA Media Types] whenever possible.
 
 An example for content negotiation based on HTTP headers and with query parameter override:
 
