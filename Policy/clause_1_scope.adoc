@@ -1,0 +1,11 @@
+== Scope
+
+This policy document presents a set of common design principles for developing Web APIs.
+
+The design of common elements of OGC Web APIs should follow a common pattern to ensure easy adoption.
+
+There are common design principles in main-stream IT that should be adopted to ease the adoption of OGC Web APIs.
+
+But still, there are some aspects that would need to be agreed upon to ensure seamless APIs for different thematic topics in OGC.
+
+In particular avoid that APIs are fundamentally different to access, process and manage different kinds of geospatial resources such as Features, Maps, Tiles, Coverages, Observations, Processes, etc.

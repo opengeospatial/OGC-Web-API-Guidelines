@@ -1,0 +1,13 @@
+[appendix]
+:appendix-caption: Annex
+== Revision History
+
+[width="90%",options="header"]
+|===
+|Date |Release |Editor | Primary clauses modified |Description
+|2020-06-03 |0.1 |Gobe Hobona |all | Initial text
+|2020-06-19 |0.2 |Clemens Portele |multiple | Added sections on registers and fixed sections on URIs
+|2020-06-20 |0.3 |Gobe Hobona |6.8, 6.9 | Update to registers section
+|2020-06-23 |0.4 |Gobe Hobona |6.10 | Removed abbreviations section, as per TC decision on 2020-06-22
+|2020-07-15 |0.5 |Gobe Hobona |4,6.1,6.2 | Addressing comments received from OGC-NA vote.
+|===

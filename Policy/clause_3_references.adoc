@@ -1,0 +1,7 @@
+== References
+
+OGC: OGC 05-020r25, Technical Committee Policies and Procedures, http://docs.opengeospatial.org/pol/05-020r25/05-020r25.html (2017)
+
+OGC: OGC 09-046r5, OGC Naming Authority – Procedures, http://www.opengeospatial.org/standards/na (2018)
+
+OGC: OGC 06-030r12, OGC Architecture Board Policies and Procedures, https://portal.opengeospatial.org/files/?artifact_id=81222 (2018)
