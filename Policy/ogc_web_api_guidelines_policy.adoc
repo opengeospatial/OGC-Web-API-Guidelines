@@ -23,7 +23,7 @@
 |Internal reference number of this OGC(R) document:    YY-YYYY
 |Version: {m.n}
 |Category: OGC(R) Policy
-|Editor:   Joan Maso, Chuck Heazel, Andreas Matheus, Frank Terpstra
+|Editor:   Name(s)
 |===
 
 [cols = "^", frame = "none"]

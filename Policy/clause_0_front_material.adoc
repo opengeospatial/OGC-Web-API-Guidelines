@@ -18,9 +18,9 @@ The following organizations submitted this Document to the Open Geospatial Conso
 
 Organization name(s)
 
+* Secure Dimensions
 * Heazel Technologies
 * UAB-CREAF
-* Secure Dimensions
 * Geonovum
 
 
@@ -32,8 +32,8 @@ All questions regarding this submission should be directed to the editor or the 
 [width="80%",options="header"]
 |====================
 |Name |Affiliation
+|Andreas Matheus | Secure Dimensions
 |Chuck Heazel | Heazel Technologies
 |Joan Maso | UAB-CREAF
-|Andreas Matheus | Secure Dimensions
 |Frank Terpstra | Geonovum
 |====================
