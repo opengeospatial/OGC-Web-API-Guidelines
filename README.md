@@ -84,21 +84,21 @@ Note that it doesn’t matter if you use singular or plural for your nouns to bu
 
 Include in your API design the use of all HTTP methods that operate on resources: **POST, GET, PUT, ,PATCH, DELETE**
 
-The most important prinicple of REST is the seperation of the API in logical resources (*things*). The resources describe the information of the *thing*. These resources are manipulated using HTTP-requests and HTTP-operations. Each operation (`GET`, `POST`, `PUT`, `PATCH`, `DELETE`) has a specific meaning.
-> HTTP also defines operations, e.g. `HEAD`, `TRACE`, `OPTIONS` en `CONNECT`. In the context of REST, these operations are hardly ever used and have been excluded from the rest of the overview below.
+The most important design aspect of REST is the seperation of the API in logical resources (*things*). The resources describe the information of the *thing*. These resources are manipulated using HTTP-requests and HTTP-operations. Each operation (`GET`, `POST`, `PUT`, `PATCH`, `DELETE`) has a specific meaning.
+> HTTP also defines operations, e.g. `TRACE` and `CONNECT`. In the context of REST, these operations are hardly ever used and have been excluded from the rest of the overview below.
 
 |Operation|CRUD|Description|
 |-|-|-|
-|`POST`|Create|Create resources that represent collections (i.e. `POST` adds a resource to a collection).|
+|`POST`|Create|Create resources (i.e. `POST` adds a resource to a collection).|
 |`GET`|Read|Retrieve a resource from the server. Data is only retrieved and not modified.|
 |`PUT`|Update|Replace a specific resource. Is also used as a *create* " if the resource at the indicated identifier/URI does not exist yet.|
-|`PATCH`|Update|Partially modify an existing resource. The request contains the data that have to be changed and the operations that modify the resource and in case JSON is the encoding format in the designated JSON merge patch format (RFC 7386).|
+|`PATCH`|Update|Partially modify an existing resource. The request contains the data and instructions that have to be used for changing/modifying the resource. In case JSON is the encoding format in the designated JSON merge patch format (RFC 7386).|
 |`DELETE`|Delete|Remove the specific resource.|
 
 Also one can consider support for other HTTP methods:
 
  * HEAD to return HTTP Headers with no payload
- * OPTIONS to support W3C CORS
+ * OPTIONS to support W3C CORS and Web API specific semantics
 
 ### Principle #6 – Put Selection Criteria behind the ‘?’
 
