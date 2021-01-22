@@ -142,9 +142,9 @@ information on how to fix things + contact details
       "contact_details": "..."  
     }
 
-### Principle #8 – Use of HTTP Status Codes
+### Principle #8 – Use explicit list of HTTP Status Codes
 
-More then 70 HTTP status codes exist (summary in RFC 7231).  You should reduce the use in your API to the most important ones. For example:
+More then 70 HTTP status codes exist (summary in RFC 7231).  You should reduce the use in your API to the most important ones. Use a concise list in your API documentation (see principle API description), for example:
 
 | Option Set #1 – Basic set |  Option Set #2 – Additional
 | -- | -- 
@@ -165,7 +165,7 @@ More then 70 HTTP status codes exist (summary in RFC 7231).  You should reduce t
 |  | - 429 - Too Many Requests
 | - 500 - Internal Server Error | - 503 - Service Unavailable 
 
-Be explicit which 30x statucs code your API supports. For any supported 30x follow the HTTP semantics.
+Be explicit which 30x status codes your API supports. For any supported 30x follow the HTTP semantics.
 
 ### Principle #9 – Use of HTTP Header
 
@@ -264,9 +264,11 @@ IANA and other standardization organizations have defined so called well known i
 
 For example is it possible to differenciate between XACML or GeoXACML policies. XACML policies would be returned with the 'application/xacml+xml' media type and GeoXACML policies with media type 'application/geoxacml+xml'
 
-### Principle #17 - Use explicit geospatial relations
+### Principle #17 - Use explicit relations
 
-In many cases it is appropiate to use typed relation to explicitelly declare links among resources. A special case are topological spatial relations between resources (e.g., contains, within, etc.) which are easy to derive with a GIS, but not with Web clients unless the relations are explicitly represented. The relations may either be explicitly included in the resource representation or in Link headers in the HTTP response header (see RFC 5988).
+In many cases it is appropiate to use typed relation to explicitelly declare links among resources. 
+
+A special case are spatial relations between resources (e.g., topological relations such as: contains, within, etc.) which are easy to derive with a GIS, but not with Web clients unless the relations are explicitly represented. The relations may either be explicitly included in the resource representation or in Link headers in the HTTP response header (see RFC 5988).
 
 ### Principle #18 - Support W3C Cross-Origin Resource Sharing
 
@@ -285,3 +287,23 @@ Still, the XML encoding should be supported as it is often required to meet spec
 ### Principle #20 - Good APIs are testable from the beginning
 
 Any OGC Web API developed according to these guidelines can be tested at design phase already. Considering all design principles including the identification of resource types, the effect of applying HTTP methods to them, the potential HTTP status codes, etc. provides the basis for documenting and implementing compliance tests in parallel to the API design.
+
+### Principle #21 - Specify wether operations are safe and/or idempotent 
+For each operation one has to specify whether it has to be *safe* and/or *idempotent*. This is important, because clients and middelware rely on this.
+This is helpful for identifying potential security issues when writing the security considerations of the Web API.
+
+> **Safe (read-only)**
+>
+> Safe (read-only) in this case means that the semantics has been defined as read-only. This is important, because clients and middelware like to use caching.
+
+> **Idempotent**
+>
+> Idempotent means that multiple, identical requests have the same effect as one request.
+
+|Operation|Safe|Idempotent|
+|-|-|-|
+|`POST`|No|No|
+|`GET`, `OPTIONS`, `HEAD`|Yes|Yes|
+|`PUT`|No|Yes|
+|`PATCH`|No|Optional|
+|`DELETE`|No|Yes|
