@@ -1,0 +1,39 @@
+[big]*i.     Abstract*
+
+This document is a *draft* policy of the OGC Architecture Board (OAB). The document defines a series of guidelines for Web Application Programming Interface (API) standards developed by the OGC. The OGC Web API Guidelines consist of a list of Design Principles. The policy document therefore applies to the OGC API suite of standards.
+
+[big]*ii.    Keywords*
+
+The following are keywords to be used by search engines and document catalogues.
+
+ogcdoc, OGC document,  policy, OGC API, web API
+
+[big]*iii.   Preface*
+
+This document defines a series of policy requirements for Web API standards developed by the OGC.
+
+[big]*iv.    Submitting organizations*
+
+The following organizations submitted this Document to the Open Geospatial Consortium (OGC):
+
+Organization name(s)
+
+* Secure Dimensions
+* Heazel Technologies
+* UAB-CREAF
+* Geonovum
+
+
+[big]*v.     Submitters*
+
+All questions regarding this submission should be directed to the editor or the submitters:
+
+.Contacts
+[width="80%",options="header"]
+|====================
+|Name |Affiliation
+|Andreas Matheus | Secure Dimensions
+|Chuck Heazel | Heazel Technologies
+|Joan Maso | UAB-CREAF
+|Frank Terpstra | Geonovum
+|====================

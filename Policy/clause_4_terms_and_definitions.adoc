@@ -1,0 +1,27 @@
+== Terms and Definitions
+This document uses the terms defined in Sub-clause 5.3 of [OGC 06-121r8], which is based on the ISO/IEC Directives, Part 2, Rules for the structure and drafting of International Standards. In particular, the word “shall” (not “must”) is the verb form used to indicate a requirement to be strictly followed to conform to this standard.
+
+This document also uses terms defined in the OGC Standard for Modular specifications (https://portal.opengeospatial.org/files/?artifact_id=34762[OGC 08-131r3]), also known as the 'ModSpec'.
+
+For the purposes of this document, the following additional terms and definitions apply.
+
+
+=== specification
+
+document containing recommendations, requirements and conformance tests for those requirements (source: https://portal.opengeospatial.org/files/?artifact_id=34762[OGC 08-131r3])
+
+NOTE: This definition is included for completeness. See Clause 5.3 of The Specification Model — A Standard for Modular specifications (https://portal.opengeospatial.org/files/?artifact_id=34762[OGC 08-131r3]). This does not restrict what else a standard may contain, as long as it does contain the three types of element cited.
+
+
+=== standard
+
+specification that has been approved by a legitimate Standards Body (source: https://portal.opengeospatial.org/files/?artifact_id=34762[OGC 08-131r3])
+
+NOTE: This definition is included for completeness. Standard and specification can apply to the same document. While specification is always valid, standard only applies after the adoption of the document by a legitimate standards organization. The legitimate Standards Bodies for OGC consist of OGC, ISO and any of the other standards bodies accepted and used as a source of normative references by OGC or ISO in their standards. In the normal meaning of the word "standard", there are other conditions that may be required, but this standard has chosen to ignore them in the process of abstraction.
+
+
+=== Web API
+
+API using an architectural style that is founded on the technologies of the Web (source: http://docs.opengeospatial.org/is/17-069r3/17-069r3.html#DWBP[DWBP])
+
+NOTE: https://www.w3.org/TR/dwbp/#APIHttpVerbs[Best Practice 24: Use Web Standards as the foundation of APIs] in the http://docs.opengeospatial.org/is/17-069r3/17-069r3.html#DWBP[W3C Data on the Web Best Practices] provides more detail.
