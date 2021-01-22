@@ -82,22 +82,23 @@ Note that it doesn’t matter if you use singular or plural for your nouns to bu
 
 ### Principle #5 – Use HTTP Methods consistent with RFC 2616
 
-Include in your API design the use of all HTTP methods that operate on resources: **GET, POST, PUT, DELETE**
+Include in your API design the use of all HTTP methods that operate on resources: **POST, GET, PUT, ,PATCH, DELETE**
 
-Define the semantics carefully when a method is invoked on a particular URI addressing a resource. E.g.
+The most important design aspect of REST is the seperation of the API in logical resources (*things*). The resources describe the information of the *thing*. These resources are manipulated using HTTP-requests and HTTP-operations. Each operation (`GET`, `POST`, `PUT`, `PATCH`, `DELETE`) has a specific meaning.
+> HTTP also defines operations, e.g. `TRACE` and `CONNECT`. In the context of REST, these operations are hardly ever used and have been excluded from the rest of the overview below.
 
-| Resource  | POST  | GET  | PUT | DELETE 
-| -- | -- | -- | -- | -- 
-| ../collections/highways/items | create a new highway | list all highways | bulk update of highways | delete all highways  
-| .../collections/highways/items/A8 | Error! | show A8 | If exists: Update A8 else: Create A8 | delete highway A8
+|Operation|CRUD|Description|
+|-|-|-|
+|`POST`|Create|Create resources (i.e. `POST` adds a resource to a collection).|
+|`GET`|Read|Retrieve a resource from the server. Data is only retrieved and not modified.|
+|`PUT`|Update|Replace a specific resource. Is also used as a *create* " if the resource at the indicated identifier/URI does not exist yet.|
+|`PATCH`|Update|Partially modify an existing resource. The request contains the data and instructions that have to be used for changing/modifying the resource. In case JSON is the encoding format in the designated JSON merge patch format (RFC 7386).|
+|`DELETE`|Delete|Remove the specific resource.|
 
-Do not force all semantics in just HTTP GET!
-
-Also consider support for other HTTP methods:
+Also one can consider support for other HTTP methods:
 
  * HEAD to return HTTP Headers with no payload
- * OPTIONS to support W3C CORS
- * PATCH to update parts of an existing resource
+ * OPTIONS to support W3C CORS and Web API specific semantics
 
 ### Principle #6 – Put Selection Criteria behind the ‘?’
 
