@@ -67,7 +67,7 @@ Where resources are nested, the path elements may be concatenated. For example:
     .../collections - returns the list of feature collections
     .../collections/highways - returns representation of the collection 'highways'
     .../collections/highways/items - returns the features in the collection 'highways'
-    .../collections/highways/items/A8 - returns the feature 'A9' in the collection 'highways'
+    .../collections/highways/items/A8 - returns the feature 'A8' in the collection 'highways'
     
 For resource types that consist of a single resource, the pattern at the end of the URI path is as follows where `resourceType` is in singular:
 
