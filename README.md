@@ -172,7 +172,7 @@ Be explicit which 30x status codes your API supports. For any supported 30x foll
 
 Define all HTTP Headers that your API supports.
 
-Use HTTP Headers as intended by RFC 2616, but design your API to allow overwriting of HTTP Headers based on URL query parameters.
+Use HTTP Headers as intended by [RFC 7231](https://tools.ietf.org/html/rfc7231), but design your API to allow overwriting of HTTP Headers based on URL query parameters.
 
 For support of caching consider to support entity tags and the associated headers. However, their use might be in conflict when implementing security requirements. For these cases, you should explicitly name those headers that must be overwritten to avoid caching.
 
@@ -180,7 +180,7 @@ For support of caching consider to support entity tags and the associated header
 
 Content negotiation is an important, but special case of Principle #9. 
 
-Use HTTP request header like 'Accept' or 'Accept-Language' to request the response in a particular content type or language as defined in [RFC 2616](https://tools.ietf.org/html/rfc2616).
+Use HTTP request header like 'Accept' or 'Accept-Language' to request the response in a particular content type or language as defined in [RFC 7231](https://tools.ietf.org/html/rfc7231).
 
 Use registered [IANA Media Types](https://www.iana.org/assignments/media-types/media-types.xhtml) whenever possible. 
 
@@ -230,7 +230,7 @@ APIs may decide to offer processing resources as separate operations to support 
 
 This part of the API helps the developer to understand how to use data or processing resources. One should provide metadata for an API. Metadata should be associated with the resource it describes. 
 
-For example, one can associate metadata with a given resources though an association. Most notable, the `service-meta` and `data-meta` link relation types
+For example, one can associate metadata with a given resources though an association. Most notable, the `service-meta` and `data-meta` link relation types.
 
 Regardless of the approach taken, use it consistently.
     
@@ -259,8 +259,7 @@ IANA and other standardization organizations have defined so called well known i
 For example is it possible to differenciate between XACML or GeoXACML policies. XACML policies would be returned with the 'application/xacml+xml' media type and GeoXACML policies with media type 'application/geoxacml+xml'
 
 ### Principle #17 - Use explicit relations
-
-In many cases it is appropiate to use typed relation to explicitelly declare links among resources. 
+In many cases it is appropriate to use typed relation to explicitly declare links among resources. 
 
 A special case are spatial relations between resources (e.g., topological relations such as: contains, within, etc.) which are easy to derive with a GIS, but not with Web clients unless the relations are explicitly represented. The relations may either be explicitly included in the resource representation or in Link headers in the HTTP response header (see RFC 5988).
 
