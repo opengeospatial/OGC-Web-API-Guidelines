@@ -80,7 +80,7 @@ For example:
 
 Note that it doesn’t matter if you use singular or plural for your nouns to build the paths, but use a consistent pattern throughout your API!
 
-### Principle #5 – Use HTTP Methods consistent with RFC 2616
+### Principle #5 – Use HTTP Methods consistent with RFC 7231
 
 Include in your API design the use of all HTTP methods that operate on resources: **GET, POST, PUT, DELETE**
 
@@ -227,19 +227,12 @@ APIs may decide to offer processing resources as separate operations to support 
 
 ### Principle #13 – Support Metadata
 
-This part of the API helps the developer to understand how to use data or processing resources. Two approaches exist how to achieve this:
+This part of the API helps the developer to understand how to use data or processing resources. One should provide meta-data for an API. Metadata should be associated with the resource it describes. 
 
-(1) Start the URL path with 'metadata' to indicate that subsequent path identifies a resource for which the metadata is returned.
-
-    .../metadata/collections/highways/items/A8
-
-(2) End the URL path with 'metadata' to indicate that the metadata is an integral part of the resource that can be fetched sepreately.
-
-    .../collections/highways/items/A8/metadata
+For example, one can associate metadata with a given resources though an association. Most notable, the service-meta and data-meta association types
 
 Regardless of the approach taken, use it consistently.
     
-You may use of the ‘?’ operator to send selection criteria (see Principle #6).
 
 ### Principle #14 – Consider your Security needs
 
