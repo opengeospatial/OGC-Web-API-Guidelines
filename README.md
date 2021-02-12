@@ -67,7 +67,7 @@ Where resources are nested, the path elements may be concatenated. For example:
     .../collections - returns the list of feature collections
     .../collections/highways - returns representation of the collection 'highways'
     .../collections/highways/items - returns the features in the collection 'highways'
-    .../collections/highways/items/A8 - returns the feature 'A9' in the collection 'highways'
+    .../collections/highways/items/A8 - returns the feature 'A8' in the collection 'highways'
     
 For resource types that consist of a single resource, the pattern at the end of the URI path is as follows where `resourceType` is in singular:
 
@@ -82,22 +82,23 @@ Note that it doesn’t matter if you use singular or plural for your nouns to bu
 
 ### Principle #5 – Use HTTP Methods consistent with RFC 7231
 
-Include in your API design the use of all HTTP methods that operate on resources: **GET, POST, PUT, DELETE**
+Include in your API design the use of all HTTP methods that operate on resources: **POST, GET, PUT, ,PATCH, DELETE**
 
-Define the semantics carefully when a method is invoked on a particular URI addressing a resource. E.g.
+The most important design aspect of REST is the seperation of the API in logical resources (*things*). The resources describe the information of the *thing*. These resources are manipulated using HTTP-requests and HTTP-operations. Each operation (`GET`, `POST`, `PUT`, `PATCH`, `DELETE`) has a specific meaning.
+> HTTP also defines operations, e.g. `TRACE` and `CONNECT`. In the context of REST, these operations are hardly ever used and have been excluded from the rest of the overview below.
 
-| Resource  | POST  | GET  | PUT | DELETE 
-| -- | -- | -- | -- | -- 
-| ../collections/highways/items | create a new highway | list all highways | bulk update of highways | delete all highways  
-| .../collections/highways/items/A8 | Error! | show A8 | If exists: Update A8 else: Create A8 | delete highway A8
+|Operation|CRUD|Description|
+|-|-|-|
+|`POST`|Create|Create resources (i.e. `POST` adds a resource to a collection).|
+|`GET`|Read|Retrieve a resource from the server. Data is only retrieved and not modified.|
+|`PUT`|Update|Replace a specific resource. Is also used as a *create* " if the resource at the indicated identifier/URI does not exist yet.|
+|`PATCH`|Update|Partially modify an existing resource. The request contains the data and instructions that have to be used for changing/modifying the resource. In case JSON is the encoding format in the designated JSON merge patch format (RFC 7386).|
+|`DELETE`|Delete|Remove the specific resource.|
 
-Do not force all semantics in just HTTP GET!
-
-Also consider support for other HTTP methods:
+Also one can consider support for other HTTP methods:
 
  * HEAD to return HTTP Headers with no payload
- * OPTIONS to support W3C CORS
- * PATCH to update parts of an existing resource
+ * OPTIONS to support W3C CORS and Web API specific semantics
 
 ### Principle #6 – Put Selection Criteria behind the ‘?’
 
@@ -171,7 +172,7 @@ Be explicit which 30x status codes your API supports. For any supported 30x foll
 
 Define all HTTP Headers that your API supports.
 
-Use HTTP Headers as intended by RFC 2616, but design your API to allow overwriting of HTTP Headers based on URL query parameters.
+Use HTTP Headers as intended by [RFC 7231](https://tools.ietf.org/html/rfc7231), but design your API to allow overwriting of HTTP Headers based on URL query parameters.
 
 For support of caching consider to support entity tags and the associated headers. However, their use might be in conflict when implementing security requirements. For these cases, you should explicitly name those headers that must be overwritten to avoid caching.
 
@@ -179,7 +180,7 @@ For support of caching consider to support entity tags and the associated header
 
 Content negotiation is an important, but special case of Principle #9. 
 
-Use HTTP request header like 'Accept' or 'Accept-Language' to request the response in a particular content type or language as defined in [RFC 2616](https://tools.ietf.org/html/rfc2616).
+Use HTTP request header like 'Accept' or 'Accept-Language' to request the response in a particular content type or language as defined in [RFC 7231](https://tools.ietf.org/html/rfc7231).
 
 Use registered [IANA Media Types](https://www.iana.org/assignments/media-types/media-types.xhtml) whenever possible. 
 
@@ -227,9 +228,9 @@ APIs may decide to offer processing resources as separate operations to support 
 
 ### Principle #13 – Support Metadata
 
-This part of the API helps the developer to understand how to use data or processing resources. One should provide meta-data for an API. Metadata should be associated with the resource it describes. 
+This part of the API helps the developer to understand how to use data or processing resources. One should provide metadata for an API. Metadata should be associated with the resource it describes. 
 
-For example, one can associate metadata with a given resources though an association. Most notable, the service-meta and data-meta association types
+For example, one can associate metadata with a given resources though an association. Most notable, the `service-meta` and `data-meta` link relation types.
 
 Regardless of the approach taken, use it consistently.
     
@@ -258,8 +259,7 @@ IANA and other standardization organizations have defined so called well known i
 For example is it possible to differenciate between XACML or GeoXACML policies. XACML policies would be returned with the 'application/xacml+xml' media type and GeoXACML policies with media type 'application/geoxacml+xml'
 
 ### Principle #17 - Use explicit relations
-
-In many cases it is appropiate to use typed relation to explicitelly declare links among resources. 
+In many cases it is appropriate to use typed relation to explicitly declare links among resources. 
 
 A special case are spatial relations between resources (e.g., topological relations such as: contains, within, etc.) which are easy to derive with a GIS, but not with Web clients unless the relations are explicitly represented. The relations may either be explicitly included in the resource representation or in Link headers in the HTTP response header (see RFC 5988).
 
