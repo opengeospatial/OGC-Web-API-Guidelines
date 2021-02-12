@@ -227,9 +227,9 @@ APIs may decide to offer processing resources as separate operations to support 
 
 ### Principle #13 – Support Metadata
 
-This part of the API helps the developer to understand how to use data or processing resources. One should provide meta-data for an API. Metadata should be associated with the resource it describes. 
+This part of the API helps the developer to understand how to use data or processing resources. One should provide metadata for an API. Metadata should be associated with the resource it describes. 
 
-For example, one can associate metadata with a given resources though an association. Most notable, the service-meta and data-meta association types
+For example, one can associate metadata with a given resources though an association. Most notable, the `service-meta` and `data-meta` link relation types
 
 Regardless of the approach taken, use it consistently.
     
