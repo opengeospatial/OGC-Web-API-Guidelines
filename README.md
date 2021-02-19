@@ -30,8 +30,6 @@ All principles are equally important and the order of the principles does not re
 
 Even though functioning as a Policy Document, the use is more like a checklist to streamline the design and the review process in OAB and OGC Technical committee. The assessment from verifying the Web API design against the checklist should be submitted with the Web API draft standard to the OAB. It is possible to not follow all principles, but reasons for deviation should be given.
 
-For the moment you should consider this to be a living, evolving document. Please create or comment on existing Issues to discuss changes, corrections, and enhancements to the principles. 
-
 ## Starting point
 
 The starting point of the Design Principles listed here was taken from a presentation [OGC Web API Design Principles](https://portal.opengeospatial.org/files/?artifact_id=78344) (requires OGC portal login) given during the OGC TC meetings in Orleans and Fort Collins. The presentation summerizes a collection of the Web API design principles used today by major players in main stream IT business. The purpose of the presentation is to ensure that the "common part of an API" is designed such that it can be re-used and a adopted easily. However, the initial presentation was not perfect in the sense that it might be incomplete and that there is room left for a good consensus discussion.
