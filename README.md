@@ -4,7 +4,9 @@
 
 The OGC Web API Guidelines consist of a list of Design Principles inspired by mainstream IT. Examples include:
 
-
+- [ZalandZalando RESTful API and Event Scheme Guidelines](https://opensource.zalando.com/restful-api-guidelines/)
+- [Microsoft REST API Guidelines](https://github.com/microsoft/api-guidelines/blob/vNext/Guidelines.md)
+- [Google API Design Guide](https://cloud.google.com/apis/design/)
 
 ## Why OGC Web API Design Principles 
 
