@@ -304,3 +304,9 @@ This is helpful for identifying potential security issues when writing the secur
 |`PUT`|No|Yes|
 |`PATCH`|No|Optional|
 |`DELETE`|No|Yes|
+
+Principle #22 – Make resources discoverable
+
+To support [FAIR](https://www.go-fair.org/), discoverability is key (it is one option to address the F in FAIR). When a resource has other resources associated with it, make the associated resources discoverable.
+
+For example through links in the document for that resource. Populate link elements and use link relations to choose appropriate "rel" properties for the links. When there are a large number of references and/or no link relation is appropriate, make the resource an array of other sub-resources. In these sub-recources of the array, include the most essential properties and provide a link with a self "rel" that points to the complete document. Another alternative is a URL template, see principle #4.
