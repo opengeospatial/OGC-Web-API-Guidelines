@@ -1,0 +1,12 @@
+[appendix]
+:appendix-caption: Annex
+== Revision History
+
+[width="90%",options="header"]
+|===
+|Date |Release |Editor | Primary clauses modified |Description
+|2018-07-09 |0.0.1 |Chuck Heazel |all | Initial text
+|2018-07-27 |0.0.2 |Andreas Matheus |multiple | 
+|2018-08-02 |0.0.3 |Joan Maso |multiple | 
+|2019-02-12 |0.0.4 |Andreas Matheus |multiple | 
+|===
