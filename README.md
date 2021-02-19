@@ -246,17 +246,19 @@ Try to follow common practices for security in Web APIs, for example:
 
 ### Principle #15 – API Description
 
-Describing the API in human and macine readable form has value to the developer. Currently OpenAPI version 3 is common practice.
+Describing the API in human and machine readable form has value to the developer. Currently OpenAPI version 3 is common practice.
 
-### Principle #16 - Use IANA well-known identifiers
+### Principle #16 - Use well-known identifiers
 
-IANA and other standardization organizations have defined so called well known identifiers for different purposes. For example:
+IANA has defined well-known identifiers for different purposes. For example:
 
 - Media types: https://www.iana.org/assignments/media-types/media-types.xhtml
 - Link relations: https://www.iana.org/assignments/link-relations/link-relations.xhtml
 - Well-known URIs: https://www.iana.org/assignments/well-known-uris/well-known-uris.xhtml
 
-For example is it possible to differenciate between XACML or GeoXACML policies. XACML policies would be returned with the 'application/xacml+xml' media type and GeoXACML policies with media type 'application/geoxacml+xml'
+For example is it possible to differenciate between XACML or GeoXACML policies. XACML policies would be returned with the 'application/xacml+xml' media type and GeoXACML policies with media type 'application/geoxacml+xml'.
+
+For identifiers not registered with IANA, other standardization bodies like OGC should be used. For OGC for example, well-known identifiers can be registered with the OGC [Definition Server](https://www.ogc.org/def-server).
 
 ### Principle #17 - Use explicit relations
 In many cases it is appropriate to use typed relation to explicitly declare links among resources. 
