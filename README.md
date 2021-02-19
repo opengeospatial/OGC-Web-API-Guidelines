@@ -305,7 +305,7 @@ This is helpful for identifying potential security issues when writing the secur
 |`PATCH`|No|Optional|
 |`DELETE`|No|Yes|
 
-Principle #22 – Make resources discoverable
+### Principle #22 – Make resources discoverable
 
 To support [FAIR](https://www.go-fair.org/), discoverability is key (it is one option to address the F in FAIR). When a resource has other resources associated with it, make the associated resources discoverable.
 
