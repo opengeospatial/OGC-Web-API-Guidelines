@@ -22,6 +22,8 @@ The implementation of Web APIs that allow the management, processing and use of 
 
 To ensure that (i) Web API design across all different domains of expertise is coherent and (ii) the maximum from main stream IT design pattern is reused, the OGC Architecture Board (OAB) requested the elaboration of these guidelines. This process is done under the Architechture DWG with the colaboration of the OWS Common SWG. For the moment this is a living document to inspire additional discussion and refinement within and among DWG and SWG teams, and contribute our learnings and suggestions to the technological community at large. The final aim is to reach consensus and converge in a document that the OGC can approve as a Policy Document. 
 
+All principles are equally important and the order of the principles does not reflect their relative importance.
+
 Even though functioning as a Policy Document, the use is more like a checklist to streamline the design and the review process in OAB and OGC Technical committee. The assessment from verifying the Web API design against the checklist should be submitted with the Web API draft standard to the OAB. It is possible to not follow all principles, but reasons for deviation should be given.
 
 For the moment you should consider this to be a living, evolving document. Please create or comment on existing Issues to discuss changes, corrections, and enhancements to the principles. 
