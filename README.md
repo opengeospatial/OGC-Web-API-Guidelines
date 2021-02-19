@@ -2,7 +2,9 @@
 
 ## A Comprehensive Set of Guidelines for developing OGC Web APIs 
 
-The OGC Web API Guidelines consist of a list of Design Principles.
+The OGC Web API Guidelines consist of a list of Design Principles inspired by mainstream IT. Examples include:
+
+
 
 ## Why OGC Web API Design Principles 
 
