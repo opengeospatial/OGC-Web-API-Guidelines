@@ -287,7 +287,7 @@ Still, the XML encoding should be supported as it is often required to meet spec
 
 Any OGC Web API developed according to these guidelines can be tested at design phase already. Considering all design principles including the identification of resource types, the effect of applying HTTP methods to them, the potential HTTP status codes, etc. provides the basis for documenting and implementing compliance tests in parallel to the API design.
 
-### Principle #21 - Specify wether operations are safe and/or idempotent 
+### Principle #21 - Specify whether operations are safe and/or idempotent 
 For each operation one has to specify whether it has to be *safe* and/or *idempotent*. This is important, because clients and middelware rely on this.
 This is helpful for identifying potential security issues when writing the security considerations of the Web API.
 
