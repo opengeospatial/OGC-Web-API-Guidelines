@@ -46,7 +46,7 @@ For aspects and functional capabilities that are already solved in main-stream I
 
 Focus instead on geo-centric and domain specific requirements to create new APIs or extend existing APIs. 
 
-### Principle #2 – Keep It Simple and Intuitive
+### Principle #2 – Keep the API Simple and Intuitive
 
 Make the implementer of the API successful as quickly as possible!
 
