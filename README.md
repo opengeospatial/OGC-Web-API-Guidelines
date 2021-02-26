@@ -58,13 +58,13 @@ Encodings of resource types should be associated with an IANA registered media t
 
 ### Principle #4 – Construct consistent URIs
 
-Great Web APIs look like they were designed by a single team. The most obvious properties of an API are the access paths and the URL templates which define them. Therefore, OGC conventions for the construction of access path templates are essential. Some of these templates are emerging though the Web Feature Service 3.0 efforts. Before creating a new URI scheme, the SWG should follow and build on existing OGC approaches that have proven to work. If the SWG is creating a URI scheme, please explain the URI pattern.
+Great Web APIs look like they were designed by a single team. The most obvious properties of an API are the access paths and the URL templates which define them. Therefore, OGC conventions for the construction of access path templates are essential. Before creating a new URI scheme, the SWG should follow and build on existing OGC approaches that have proven to work. If the SWG is creating a URI scheme, please explain the URI pattern.
 
 The API URI pattern should be documented, formalized, explained.
 
 One existing approach in the OGC is the following (simplified):
 
-For resource types that consist of a collection of resources, the pattern at the end of the URI path is as follows where `resourceType` is in plural:
+For resource types that consist of a collection of resources, the pattern at the end of the URI path is as follows where `resourceType` is plural:
 
     .../{resourceType}/{resourceId}
 
@@ -75,7 +75,7 @@ Where resources are nested, the path elements may be concatenated. For example:
     .../collections/highways/items - returns the features in the collection 'highways'
     .../collections/highways/items/A8 - returns the feature 'A8' in the collection 'highways'
     
-For resource types that consist of a single resource, the pattern at the end of the URI path is as follows where `resourceType` is in singular:
+For resource types that consist of a single resource, the pattern at the end of the URI path is as follows where `resourceType` is singular:
 
     .../{resourceType}
 
@@ -159,6 +159,7 @@ More than 70 HTTP status codes exist (summary is in RFC 7231).  You should reduc
 | - 100 - Continue |
 | - 200 - OK | - 201 - Created 
 |  | - 204 - No Content
+| - 30x - Redirect | - 30x - Redirect 
 |  | - 304 - Not Modified 
 | - 400 - Bad Request | - 401 Unauthorized  
 |  | - 403 - Forbidden 
@@ -173,7 +174,7 @@ More than 70 HTTP status codes exist (summary is in RFC 7231).  You should reduc
 |  | - 429 - Too Many Requests
 | - 500 - Internal Server Error | - 503 - Service Unavailable 
 
-The table above does not list the Redirect status codes for simplicity. Be explicit which 30x Redirect status codes the API supports. For any supported 30x codes follow the HTTP semantics.
+Be explicit which 30x Redirect status codes the API supports. For any supported 30x codes follow the HTTP semantics.
 
 ### Principle #9 – Use of HTTP Header
 
@@ -215,7 +216,7 @@ An example for content negotiation based on HTTP headers and with query paramete
 
 OGC Web APIs that may be designed to access large data collections should support pagination. Offset pagination is one of the simplest to implement. Offset pagination is specified using the limit and offset commands. Offset pagination is popular with apps powered by SQL databases, as limit and offset are already included with the SQL SELECT library. Offset pagination requires almost no programming. It’s also stateless on the server side and works regardless of custom sort_by parameters.
 
-The downside of offset pagination is potential performance difficulties when dealing with large offset values and dirty reads if resource creation, modification and deletion is allowed.
+The downside of offset pagination is potential performance difficulties when dealing with large offset values and non deterministic reads if resource creation, modification and deletion is allowed.
 
 As an example, use **limit** and **offset** as "query-string" parameters.
 
@@ -230,7 +231,7 @@ As a supplement consider support for Web Linking (RFC 5988)
 
 ### Principle #12 – Processing Resources
 
-Use **verbs** to offer **operations** on resources. Verbs - not to be confused with REST verbs - specify an action to be performed on a specific resource or a collection of resources. For example:
+Use **verbs** to offer **operations** on resources. Verbs - not to be confused with HTTP methods - specify an action to be performed on a specific resource or a collection of resources. For example:
 
     .../transform => represents a processing resource that specifies transforming a resource
 
@@ -279,7 +280,7 @@ For example is it possible to differenciate between XACML or GeoXACML policies. 
 For identifiers not registered with IANA, other standardization bodies like OGC should be used. For OGC for example, well-known identifiers can be registered with the OGC [Definition Server](https://www.ogc.org/def-server).
 
 ### Principle #17 - Use explicit relations
-In many cases it is appropriate to use typed relation to explicitly declare links among resources. 
+In many cases it is appropriate to use typed relation to explicitly declare links between resources. 
 
 A special case are spatial relations between resources (e.g., topological relations such as: contains, within, etc.) which are easy to derive with a GIS, but not with Web clients unless the relations are explicitly represented. The relations may either be explicitly included in the resource representation or in Link headers in the HTTP response header (see RFC 5988).
 
@@ -289,7 +290,7 @@ If the OGC Web API is designed to be accessed by Web-applications executed in a 
 
 Cross-Origin Resource Sharing (CORS) is an HTTP-header based mechanism that allows a server to indicate any other origins (domain, scheme, or port) than its own from which a browser should permit loading of resources. (Mozilla, 2021)
 
-This approach provides the ability to overcome the security restrictions introduced by the Same-Origin Policy (https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy) applied by the Web Browser to JavaScript based applications when trying to access your Web API.
+This approach provides the ability to overcome the security restrictions introduced by the Same-Origin Policy (https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy) applied by the Web Browser, for example to JavaScript based applications when trying to access the Web API.
 
 As identified in W3C CORS, in cross origin cases, the HTTP request carries specific HTTP headers and it is expected by the Web Browser that associated HTTP response headers exist in the response. Otherwise the processing stops. An example of a cross-origin request: the front-end JavaScript code served from https://domain-a.com uses XMLHttpRequest to make a request for https://domain-b.com/data.json.
 
@@ -297,9 +298,11 @@ As identified in W3C CORS, in cross origin cases, the HTTP request carries speci
 
 The API should provide resource representations based on the expectations of the implementers working in the domain the API is designed to support.
 
-When designing an OGC API, a key decision is whether or not the Web API should support a default encoding that every implementation has to support. The SWG should recommend supporting JSON and HTML as encodings for all resources. JSON is recommended as it is  a commonly used format that is simple to understand and well supported by tools and software libraries; HTML is recommended as it is the standard encoding for Web content.
+When designing an OGC API, a key decision is whether or not the Web API should support a default encoding that every implementation has to support. 
 
-Finally, an XML encoding should be supported as it is often required to meet specific security requirements. Also, many existing IT standards and OGC encodings are based on XML.
+The SWG should recommend encodings fitting the resource type(s) both for machine (application) and human consumption.
+
+For example, for machine reading of resources, JSON is - and XML was - commonly used. For human reading of resources or exploring capabilities of the API, HTML is commonly used.
 
 ### Principle #20 - Good APIs are testable from the beginning
 
