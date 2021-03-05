@@ -48,7 +48,9 @@ Focus instead on geo-centric and domain specific requirements to create new APIs
 
 ### Principle #2 – Keep the API Simple and Intuitive
 
-Make the implementer of the API successful as quickly as possible!
+Make the implementer of the API successful as quickly as possible.
+
+Avoid astonishment by defining a (default) behavior of the Web API that is predicable by the users (see principle #23).
 
 ### Principle #3 - Use Well-Known Resource Types
 
@@ -184,7 +186,7 @@ Use HTTP Headers as specified in [RFC 7231](https://tools.ietf.org/html/rfc7231)
 
 For support of caching, consider supporting entity tags and the associated headers. However, their use might be in conflict when implementing security requirements. For these cases, you should explicitly name those headers that must be overwritten to avoid caching.
 
-### Principle #10 - Allow felxible Content Negotiation
+### Principle #10 - Allow flexible Content Negotiation
 
 In HTTP, content negotiation is the mechanism that is used for serving different representations of a resource at the same URI, so that the user agent can specify which is best suited for the user (for example, which language of a document, which image format, or which content encoding). (Mozilla, 2021)
 
@@ -333,3 +335,14 @@ This is helpful for identifying potential security issues when writing the secur
 To support [FAIR](https://www.go-fair.org/), discoverability is key (it is one option to address the F in FAIR). When a resource has other resources associated with it, make the associated resources discoverable.
 
 For example through links in the document for that resource. Populate link elements and use link relations to choose appropriate "rel" properties for the links. When there are a large number of references and/or no link relation is appropriate, make the resource an array of other sub-resources. In these sub-recources of the array, include the most essential properties and provide a link with a self "rel" that points to the complete document. Another alternative is a URL template, see principle #4.
+
+### Principle #23 - Make default behavior explicit
+
+In case that the OGC Web API has a default behavior, it should be specified in a dominant place and be made explicit. A dominant place for the description of the default behavior could be the landing page, the response to a HTTP GET request with no parameters, the WEB API description document - e.g. OpenAPI specification, etc.
+
+Good practice for defining default behavior is avoiding exception, error or empty pages as the response. 
+
+Examples for default behavior:
+
+ * response to a HTTP GET request if no accept headers or query parameters are specified in the request
+ * the number of `items` returned (which might be controlled by a `limit` parameter (see principle #11)
