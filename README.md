@@ -216,20 +216,19 @@ An example for content negotiation based on HTTP headers and with query paramete
 
 ### Principle #11 - Pagination
 
-OGC Web APIs that may be designed to access large data collections should support pagination. Offset pagination is one of the simplest to implement. Offset pagination is specified using the limit and offset commands. Offset pagination is popular with apps powered by SQL databases, as limit and offset are already included with the SQL SELECT library. Offset pagination requires almost no programming. It’s also stateless on the server side and works regardless of custom sort_by parameters.
+OGC Web APIs designed to access **listable** collections should support pagination. 
 
-The downside of offset pagination is potential performance difficulties when dealing with large offset values and non deterministic reads if resource creation, modification and deletion is allowed.
+For one-dimensional lists for example, offset pagination is one of the simplest to implement. Offset pagination is specified using the limit and offset parameters. 
 
-As an example, use **limit** and **offset** as "query-string" parameters.
+Offset pagination is popular with apps powered by SQL databases, as limit and offset are already included with the SQL SELECT library. Offset pagination requires almost no programming. It’s also stateless on the server side and works regardless of custom sort_by parameters. The downside of offset pagination is potential performance difficulties when dealing with large offset values and non deterministic reads if resource creation, modification and deletion is allowed.
+
+As an example, use `limit` and `offset` as `query-string` parameters.
 
     .../collections/highways/items?limit=50&offset=101 => returns upto 50 highways starting at position 101
 
-The OGC defined Web API should return metadata with each response providing the total number of resources available (e.g. total) in the payload as well as the link to the next page.
+The OGC Web API should return metadata with each response providing the total number of resources available (e.g. total) in the payload.
 
-As a supplement consider support for Web Linking (RFC 5988)
-
-– Use HTTP Response Header to provide URLs for fetching the next / previous page
-– This approach is application neutral and should be provided by the API as the default
+As a supplement to using `limit` and `offset`, support Web Linking [RFC 5988](https://tools.ietf.org/html/rfc5988) that provides URLs for fetching the next / previous page, e.g. using HTTP Response Headers.
 
 ### Principle #12 – Processing Resources
 
