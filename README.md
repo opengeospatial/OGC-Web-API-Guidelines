@@ -1,14 +1,14 @@
 # OGC Web API Guidelines
 
-## A Comprehensive Set of Guidelines for developing OGC Web APIs 
+## A Comprehensive Set of Guidelines for developing OGC Web APIs
 
 The OGC Web API Guidelines consist of a list of Design Principles inspired by mainstream IT. Examples include:
 
-- [ZalandZalando RESTful API and Event Scheme Guidelines](https://opensource.zalando.com/restful-api-guidelines/)
+- [Zalando RESTful API and Event Scheme Guidelines](https://opensource.zalando.com/restful-api-guidelines/)
 - [Microsoft REST API Guidelines](https://github.com/microsoft/api-guidelines/blob/vNext/Guidelines.md)
 - [Google API Design Guide](https://cloud.google.com/apis/design/)
 
-## Why OGC Web API Design Principles 
+## Why OGC Web API Design Principles
 
 This document presents a set of common design principals for developing OGC Web APIs Implementation Standards.
 
@@ -44,19 +44,23 @@ The original author of the presentation (Andreas Matheus), in collaboration with
 
 For aspects and functional capabilities that are already solved in main-stream IT and meet geospatial community requirements, simply adopt these API elements.
 
-Focus instead on geo-centric and domain specific requirements to create new APIs or extend existing APIs. 
+Focus instead on geo-centric and domain specific requirements to create new APIs or extend existing APIs.
 
 ### Principle #2 – Keep the API Simple and Intuitive
 
-Make the implementer of the API successful as quickly as possible.
+Make the implementer of the API (client or server) successful as quickly as possible.
 
-Avoid astonishment by defining a (default) behavior of the Web API that is predicable by the users (see principle #23).
+Try to support not only the geospatial expert that is familiar with typical geospatial concepts, but also the web developer who has not worked with geospatial before.
+
+Avoid astonishment by defining a (default) behavior of the Web API that is predicable by and meaningful to the users (see Principle #23).
 
 ### Principle #3 - Use Well-Known Resource Types
 
-Identify your resource types and reuse existing definitions from the OGC Naming Authority resource type register (to be established). 
+Identify your resource types and reuse existing definitions from the OGC Naming Authority resource type register (to be established).
 
 Encodings of resource types should be associated with an IANA registered media type. For more guidance see Principle #16.
+
+The content of the resources should include the necessary information so that clients can use and navigate the API. OGC Web API standards should enable that generic clients can be developed that can use any Web API that implements the standard, starting at the Landing Page resource and by navigating/analyzing the resources provided by the API.
 
 ### Principle #4 – Construct consistent URIs
 
@@ -70,13 +74,13 @@ For resource types that consist of a collection of resources, the pattern at the
 
     .../{resourceType}/{resourceId}
 
-Where resources are nested, the path elements may be concatenated. For example: 
+Where resources are nested, the path elements may be concatenated. For example:
 
     .../collections - returns the list of feature collections
     .../collections/highways - returns representation of the collection 'highways'
     .../collections/highways/items - returns the features in the collection 'highways'
     .../collections/highways/items/A8 - returns the feature 'A8' in the collection 'highways'
-    
+
 For resource types that consist of a single resource, the pattern at the end of the URI path is as follows where `resourceType` is singular:
 
     .../{resourceType}
@@ -86,13 +90,13 @@ For example:
     .../collections/highways/schema - returns the schema for the features in the collection 'highways'
     .../collections/highways/metadata - returns the information about the features in the collection 'highways'
 
-Note that it does not matter if singular or plural is used for nouns to build the paths, but use a consistent pattern throughout the API!
+Note that it does not matter, if singular or plural is used for nouns to build the paths, but use a consistent pattern throughout the API!
 
 ### Principle #5 – Use HTTP Methods consistent with RFC 7231
 
-Include in the API design the use of all HTTP methods that operate on resources: **POST, GET, PUT, ,PATCH, DELETE**
+Include in the API design the use of all HTTP methods that operate on resources: **POST, GET, PUT, PATCH, DELETE**
 
-The most important design aspect of REST is the seperation of the API in logical resources (*things*). The resources describe the information of the *thing*. These resources are manipulated using HTTP-requests and HTTP-operations. Each operation (`GET`, `POST`, `PUT`, `PATCH`, `DELETE`) has a specific meaning.
+The most important design aspect of REST is the separation of the API in logical resources (*things*). The resources describe the information of the *thing*. These resources are manipulated using HTTP-requests and HTTP-operations. Each operation (`GET`, `POST`, `PUT`, `PATCH`, `DELETE`) has a specific meaning.
 > HTTP also defines operations, e.g. `TRACE` and `CONNECT`. In the context of REST, these operations are hardly ever used and have been excluded from the rest of the overview below.
 
 |Operation|CRUD|Description|
@@ -105,10 +109,10 @@ The most important design aspect of REST is the seperation of the API in logical
 
 Also consider support for other HTTP methods:
 
- * HEAD to return HTTP Headers with no payload
- * OPTIONS to support W3C CORS and Web API specific semantics
+* HEAD to return HTTP Headers with no payload
+* OPTIONS to support W3C CORS and Web API specific semantics
 
-Allow the use of `POST` as an alternative for a complext `GET` operation.
+Allow the use of `POST` as an alternative for a complex `GET` operation.
 
 ### Principle #6 – Put Selection Criteria behind the ‘?’
 
@@ -139,18 +143,21 @@ Use of the query string to select resources is highly resource specific and must
 
 Associate each error situation of the API with the appropriate HTTP status code (see also Principle #8).
 
-However, you may also consider supporting a "switch off" that always returns a status code 200 plus additional (debug / insight) information in the HTTP response body
+However, you may also consider supporting a "switch off" that always returns a status code 200 plus additional (debug / insight) information in the HTTP response body, e.g.,
 
-    e.g. ?suppress_response_codes=true
+    ?suppress-response-codes=true
 
 Return detailed human readable error no. + description +
 information on how to fix things + contact details
 
-    { "developer_message": "…",
-      "user_message": "...",
-      "error_code": "...",
-      "contact_details": "..."  
-    }
+```json
+{
+    "developer_message": "…",
+    "user_message": "...",
+    "error_code": "...",
+    "contact_details": "..."  
+}
+```
 
 ### Principle #8 – Use explicit list of HTTP Status Codes
 
@@ -201,7 +208,7 @@ The primary mechanisms for HTTP based content negotiation are these request head
 
 In OGC Web API specification development, use an HTTP request header such as 'Accept' or 'Accept-Language' to request the response in a particular content type or language as defined in [RFC 7231](https://tools.ietf.org/html/rfc7231).
 
-Use registered [IANA Media Types](https://www.iana.org/assignments/media-types/media-types.xhtml) whenever possible. 
+Use registered [IANA Media Types](https://www.iana.org/assignments/media-types/media-types.xhtml) whenever possible.
 
 An example for content negotiation based on HTTP headers and with query parameter override:
 
@@ -248,12 +255,11 @@ An OGC API standard may allow offering processing resources as separate operatio
 
 ### Principle #13 – Support Metadata
 
-Providing metadata support as part of an OGC Web API specification helps the both the specification and implementation developer to understand how to use data or processing resources supported in the API specification. 
+Providing metadata support as part of an OGC Web API specification helps the both the specification and implementation developer to understand how to use data or processing resources supported in the API specification.
 
 For example, one can associate metadata with a given resources though an association. Most notable, the `service-meta` and `data-meta` link relation types.
 
 Regardless of the approach taken, use it consistently.
-    
 
 ### Principle #14 – Consider your Security needs
 
@@ -266,7 +272,9 @@ Try to follow common practices for security in OGC Web APIs. For example:
 
 ### Principle #15 – API Description
 
-Describing the OGC API in human and machine readable form has value to the developer. Currently the OGC is using OpenAPI version 3 as common practice for documenting an OGC API.
+Describing the OGC API in human and machine readable form has value to the developer. Currently the OGC is using OpenAPI version 3.0 as common practice for documenting an OGC API.
+
+The API description in particular supports developers that are not aware of the OGC Web API standards. The description should be complete and detailed so that web developers are able to understand and use the API without knowledge about OGC standards.
 
 ### Principle #16 - Use well-known identifiers
 
@@ -276,12 +284,13 @@ IANA has defined well-known identifiers for different purposes. For example:
 - Link relations: https://www.iana.org/assignments/link-relations/link-relations.xhtml
 - Well-known URIs: https://www.iana.org/assignments/well-known-uris/well-known-uris.xhtml
 
-For example is it possible to differenciate between XACML or GeoXACML policies. XACML policies would be returned with the 'application/xacml+xml' media type and GeoXACML policies with media type 'application/geoxacml+xml'.
+For example is it possible to differentiate between XACML or GeoXACML policies. XACML policies would be returned with the 'application/xacml+xml' media type and GeoXACML policies with media type 'application/geoxacml+xml'.
 
 For identifiers not registered with IANA, other standardization bodies like OGC should be used. For OGC for example, well-known identifiers can be registered with the OGC [Definition Server](https://www.ogc.org/def-server).
 
 ### Principle #17 - Use explicit relations
-In many cases it is appropriate to use typed relation to explicitly declare links between resources. 
+
+In many cases it is appropriate to use typed relation to explicitly declare links between resources.
 
 A special case are spatial relations between resources (e.g., topological relations such as: contains, within, etc.) which are easy to derive with a GIS, but not with Web clients unless the relations are explicitly represented. The relations may either be explicitly included in the resource representation or in Link headers in the HTTP response header (see RFC 5988).
 
@@ -310,6 +319,7 @@ For example, for machine reading of resources, JSON is - and XML was - commonly 
 Any OGC Web API developed according to these guidelines can already be tested during its prototyping phase. Considering all design principles including the identification of resource types, the effect of applying HTTP methods to them, the potential HTTP status codes, etc. provides the basis for documenting and implementing compliance tests in parallel with the API design and prototyping.
 
 ### Principle #21 - Specify whether operations are safe and/or idempotent 
+
 For each operation one has to specify whether it has to be *safe* and/or *idempotent*. This is important, because clients and middelware rely on this.
 This is helpful for identifying potential security issues when writing the security considerations of the Web API.
 
@@ -343,5 +353,5 @@ Good practice for defining default behavior is avoiding exception, error or empt
 
 Examples for default behavior:
 
- * response to a HTTP GET request if no accept headers or query parameters are specified in the request
- * the number of `items` returned (which might be controlled by a `limit` parameter (see principle #11)
+* response to a HTTP GET request if no accept headers or query parameters are specified in the request
+* the number of `items` returned (which might be controlled by a `limit` parameter (see principle #11)
