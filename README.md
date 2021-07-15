@@ -1,6 +1,7 @@
 # OGC Web API Guidelines
 
-## A Comprehensive Set of Guidelines for developing OGC Web APIs 
+## Context
+### A Comprehensive Set of Guidelines for developing OGC Web APIs 
 
 The OGC Web API Guidelines consist of a list of Design Principles inspired by mainstream IT. Examples include:
 
@@ -8,7 +9,7 @@ The OGC Web API Guidelines consist of a list of Design Principles inspired by ma
 - [Microsoft REST API Guidelines](https://github.com/microsoft/api-guidelines/blob/vNext/Guidelines.md)
 - [Google API Design Guide](https://cloud.google.com/apis/design/)
 
-## Why OGC Web API Design Principles 
+### Why OGC Web API Design Principles 
 
 This document presents a set of common design principals for developing OGC Web APIs Implementation Standards.
 
@@ -20,7 +21,7 @@ This document presents a set of common design principals for developing OGC Web 
 
 - In particular the goal is to avoid that OGC Web APIs are fundamentally different to accessing, processing and managing different kinds of geospatial resources such as Features, Maps, Tiles, Coverages, Observations, Processes, etc.
 
-## Purpose and Process
+### Purpose and Process
 
 The implementation of Web APIs that allow the management, processing and use of geospatial information should be possible by anyone familiar with Web APIs designed for main stream IT. However, when an OGC Web API is being designed by multiple domain experts, while trying to address multipurpose usage, ensuring that a common design pattern is used among and between all SWGs can be challenging. 
 
@@ -32,11 +33,14 @@ Even though the main goal is to provide OGC Web API development guidance, a key 
 
 For the moment please consider version 1.x to be the foundation for further discussion and consensus. Please create or comment on existing Issues to discuss changes, corrections, and enhancements to the principles for creating revisions.
 
-## Starting point
+### Starting point
 
 The starting point for developing the Design Principles listed in this document was taken from a presentation [OGC Web API Design Principles](https://portal.opengeospatial.org/files/?artifact_id=78344) (requires OGC portal login) given during the OGC TC meetings in Orleans, France and Fort Collins, Colorado, USA. The presentation summarized a collection of the Web API design principles used today by major players in main stream IT business. The purpose of the presentation was to ensure that the "common part of an API" is designed such that it can be re-used and a adopted easily. However, the initial presentation was incomplete and  there is room for a good consensus discussion.
 
 The original author of the presentation (Andreas Matheus), in collaboration with Charles Heazel, agreed to make the content available in this open GitHub repo for the purpose of creating a starting point in discussion and deriving a set of guidelines that will be used by the OGC Architecture Board to test OGC Web API Implementation Standards for consistency before approving RFC.
+
+### How to cite this document
+To cite this document please use: Matheus A., Terpstra F. and Masó J. (ed.) OGC Web API Guidelines (2021), available at https://github.com/opengeospatial/OGC-Web-API-Guidelines
 
 ## Design Principles
 
